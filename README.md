@@ -7,7 +7,7 @@ Output Voltage = (Voltage between TMR and -S / 2.5) * 5V
 Output current can be measured between CB adn -S on either CN1 or CN2.
 Ouput current: 1Vcb = 0A, 0Vcb = 50A, -1Vcb = 100A
 	Iout = 50 * (-Vcb + 1)
-Required input impedance > 500kOhm
+Required input impedance > 500kOh
 Max current 120A ???
 
 Circuit:
@@ -21,10 +21,5 @@ TESTING:
 	* Double check default output voltage of 4.2V
 	* Double check current graph/equation
 	
-
-
-Instructions to run script/calc.py
-	- Install pipenv (https://pipenv.readthedocs.io/en/latest/)
-	- 'pipenv sync' in script folder
-	- run 'pipenv run python calc.py ../kicad/big_battery/big_battery.sch'
 	
+SHOULD REQUIRE DIRECT TURN OFF?

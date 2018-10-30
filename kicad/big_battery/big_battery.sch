@@ -145,13 +145,13 @@ Wire Wire Line
 Wire Wire Line
 	3350 1000 3500 1000
 Wire Wire Line
-	3950 1000 3950 1100
+	3950 1000 3950 1050
 $Comp
 L Device:R_Small R7
 U 1 1 5BCEBF47
 P 3500 1200
 F 0 "R7" H 3559 1246 50  0000 L CNN
-F 1 "R_Small" H 3559 1155 50  0000 L CNN
+F 1 "16K 1%" H 3559 1155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3500 1200 50  0001 C CNN
 F 3 "~" H 3500 1200 50  0001 C CNN
 	1    3500 1200
@@ -162,7 +162,7 @@ L Device:R_Small R8
 U 1 1 5BCEC08F
 P 3500 1600
 F 0 "R8" H 3559 1646 50  0000 L CNN
-F 1 "10K" H 3559 1555 50  0000 L CNN
+F 1 "10K 1%" H 3559 1555 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3500 1600 50  0001 C CNN
 F 3 "~" H 3500 1600 50  0001 C CNN
 	1    3500 1600
@@ -216,7 +216,7 @@ F 3 "" H 3950 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3950 1750 3950 1300
+	3950 1750 3950 1650
 Wire Wire Line
 	3500 1700 3500 1750
 Wire Wire Line
@@ -240,7 +240,7 @@ L Device:R_Small R3
 U 1 1 5BCED0F5
 P 2300 5200
 F 0 "R3" V 2104 5200 50  0000 C CNN
-F 1 "500K" V 2195 5200 50  0000 C CNN
+F 1 "5M 1%" V 2195 5200 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2300 5200 50  0001 C CNN
 F 3 "~" H 2300 5200 50  0001 C CNN
 	1    2300 5200
@@ -251,7 +251,7 @@ L Device:R_Small R4
 U 1 1 5BCED19D
 P 2650 4850
 F 0 "R4" H 2591 4804 50  0000 R CNN
-F 1 "R_Small" H 2591 4895 50  0000 R CNN
+F 1 "1.8M 1%" H 2591 4895 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2650 4850 50  0001 C CNN
 F 3 "~" H 2650 4850 50  0001 C CNN
 	1    2650 4850
@@ -312,7 +312,7 @@ L Device:R_Small R6
 U 1 1 5BCEFDEB
 P 3100 6150
 F 0 "R6" V 3296 6150 50  0000 C CNN
-F 1 "R_Small" V 3205 6150 50  0000 C CNN
+F 1 "4.7K 1%" V 3205 6150 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3100 6150 50  0001 C CNN
 F 3 "~" H 3100 6150 50  0001 C CNN
 	1    3100 6150
@@ -323,7 +323,7 @@ L Device:R_Small R5
 U 1 1 5BCEFEBA
 P 2650 6750
 F 0 "R5" H 2709 6796 50  0000 L CNN
-F 1 "R_Small" H 2709 6705 50  0000 L CNN
+F 1 "10K 1%" H 2709 6705 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2650 6750 50  0001 C CNN
 F 3 "~" H 2650 6750 50  0001 C CNN
 	1    2650 6750
@@ -420,7 +420,7 @@ L Device:R_Small R13
 U 1 1 5BCFF056
 P 6550 5650
 F 0 "R13" H 6491 5696 50  0000 R CNN
-F 1 "R_Small" H 6491 5605 50  0000 R CNN
+F 1 "10K 1%" H 6491 5605 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6550 5650 50  0001 C CNN
 F 3 "~" H 6550 5650 50  0001 C CNN
 	1    6550 5650
@@ -431,7 +431,7 @@ L Device:R_Small R11
 U 1 1 5BCFF18F
 P 5950 5650
 F 0 "R11" H 5891 5604 50  0000 R CNN
-F 1 "R_Small" H 5891 5695 50  0000 R CNN
+F 1 "3.3K 1%" H 5891 5695 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5950 5650 50  0001 C CNN
 F 3 "~" H 5950 5650 50  0001 C CNN
 	1    5950 5650
@@ -440,34 +440,34 @@ $EndComp
 $Comp
 L Device:Q_NMOS_GSD Q1
 U 1 1 5BCFF343
-P 5850 6150
-F 0 "Q1" H 6055 6196 50  0000 L CNN
-F 1 "AO3400" H 6055 6105 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 6050 6250 50  0001 C CNN
-F 3 "~" H 5850 6150 50  0001 C CNN
-	1    5850 6150
+P 5850 6050
+F 0 "Q1" H 6055 6096 50  0000 L CNN
+F 1 "AO3400" H 6055 6005 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 6050 6150 50  0001 C CNN
+F 3 "~" H 5850 6050 50  0001 C CNN
+	1    5850 6050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R10
 U 1 1 5BCFF619
-P 5400 5750
-F 0 "R10" H 5341 5704 50  0000 R CNN
-F 1 "R_Small" H 5341 5795 50  0000 R CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5400 5750 50  0001 C CNN
-F 3 "~" H 5400 5750 50  0001 C CNN
-	1    5400 5750
-	-1   0    0    1   
+P 5500 6250
+F 0 "R10" H 5441 6204 50  0000 R CNN
+F 1 "100K" H 5441 6295 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5500 6250 50  0001 C CNN
+F 3 "~" H 5500 6250 50  0001 C CNN
+	1    5500 6250
+	1    0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R9
 U 1 1 5BCFF687
-P 5200 6150
-F 0 "R9" V 5396 6150 50  0000 C CNN
-F 1 "R_Small" V 5305 6150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5200 6150 50  0001 C CNN
-F 3 "~" H 5200 6150 50  0001 C CNN
-	1    5200 6150
+P 5200 6050
+F 0 "R9" V 5396 6050 50  0000 C CNN
+F 1 "1K" V 5305 6050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5200 6050 50  0001 C CNN
+F 3 "~" H 5200 6050 50  0001 C CNN
+	1    5200 6050
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -475,7 +475,7 @@ L Device:R_Small R12
 U 1 1 5BCFF770
 P 6250 4450
 F 0 "R12" H 6191 4404 50  0000 R CNN
-F 1 "R_Small" H 6191 4495 50  0000 R CNN
+F 1 "3.9K 1%" H 6191 4495 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6250 4450 50  0001 C CNN
 F 3 "~" H 6250 4450 50  0001 C CNN
 	1    6250 4450
@@ -497,13 +497,13 @@ Wire Wire Line
 Wire Wire Line
 	7450 4550 7700 4550
 Wire Wire Line
-	5950 5750 5950 5950
+	5950 5750 5950 5850
 Wire Wire Line
 	6550 5750 6550 6500
 Wire Wire Line
 	6550 6500 6250 6500
 Wire Wire Line
-	5950 6500 5950 6350
+	5950 6500 5950 6250
 $Comp
 L power:GND #PWR015
 U 1 1 5BD08424
@@ -520,13 +520,6 @@ Wire Wire Line
 Connection ~ 6250 6500
 Wire Wire Line
 	6250 6500 5950 6500
-Wire Wire Line
-	5400 5850 5400 6150
-Wire Wire Line
-	5400 6150 5300 6150
-Wire Wire Line
-	5400 6150 5650 6150
-Connection ~ 5400 6150
 $Comp
 L power:+3V3 #PWR014
 U 1 1 5BD0D06A
@@ -540,20 +533,7 @@ F 3 "" H 6250 4300 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6250 4300 6250 4350
-$Comp
-L power:+3V3 #PWR013
-U 1 1 5BD0E62E
-P 5400 5600
-F 0 "#PWR013" H 5400 5450 50  0001 C CNN
-F 1 "+3V3" H 5415 5773 50  0000 C CNN
-F 2 "" H 5400 5600 50  0001 C CNN
-F 3 "" H 5400 5600 50  0001 C CNN
-	1    5400 5600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5400 5600 5400 5650
-Text Label 4850 6150 2    50   ~ 0
+Text Label 4850 6050 2    50   ~ 0
 TRICKLE_DIS
 $Comp
 L Device:R_Small R16
@@ -689,7 +669,7 @@ L Device:R_Small R2
 U 1 1 5BD23F1D
 P 2250 3250
 F 0 "R2" H 2191 3204 50  0000 R CNN
-F 1 "R_Small" H 2191 3295 50  0000 R CNN
+F 1 "10K 1%" H 2191 3295 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2250 3250 50  0001 C CNN
 F 3 "~" H 2250 3250 50  0001 C CNN
 	1    2250 3250
@@ -700,7 +680,7 @@ L Device:R_Small R1
 U 1 1 5BD23FA1
 P 2250 2750
 F 0 "R1" H 2191 2704 50  0000 R CNN
-F 1 "R_Small" H 2191 2795 50  0000 R CNN
+F 1 "13K 1%" H 2191 2795 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 2250 2750 50  0001 C CNN
 F 3 "~" H 2250 2750 50  0001 C CNN
 	1    2250 2750
@@ -826,12 +806,12 @@ REQUIRES INPUT IMPEDANCE\nGREATER THAN 500K
 Text Notes 9600 5850 0    50   ~ 0
 VOLTAGE TRM ADJ BETWEEN 0-2.5V
 Wire Wire Line
-	4900 6150 4900 3300
+	4900 6050 4900 3300
 Wire Wire Line
 	4900 3300 10400 3300
-Connection ~ 4900 6150
+Connection ~ 4900 6050
 Wire Wire Line
-	4900 6150 4850 6150
+	4900 6050 4850 6050
 Wire Wire Line
 	4800 5300 4800 3200
 Wire Wire Line
@@ -869,7 +849,7 @@ Connection ~ 2250 3450
 Wire Wire Line
 	2250 3450 2250 3350
 Wire Wire Line
-	4900 6150 5100 6150
+	4900 6050 5100 6050
 $Comp
 L Connector:Conn_01x04_Female J?
 U 1 1 5BD0CE4E
@@ -902,4 +882,56 @@ Text Label 10050 3200 0    50   ~ 0
 CURRENT
 Text Label 10400 3300 2    50   ~ 0
 TRICKLE_DIS
+Wire Wire Line
+	5300 6050 5500 6050
+Wire Wire Line
+	5950 6500 5500 6500
+Wire Wire Line
+	5500 6500 5500 6350
+Connection ~ 5950 6500
+Wire Wire Line
+	5500 6150 5500 6050
+Connection ~ 5500 6050
+Wire Wire Line
+	5500 6050 5650 6050
+$Comp
+L Device:LED_Small D?
+U 1 1 5BD9A687
+P 4450 1500
+F 0 "D?" V 4496 1432 50  0000 R CNN
+F 1 "LED_Small" V 4405 1432 50  0000 R CNN
+F 2 "" V 4450 1500 50  0001 C CNN
+F 3 "~" V 4450 1500 50  0001 C CNN
+	1    4450 1500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5BD9AD09
+P 4450 1250
+F 0 "R?" H 4509 1296 50  0000 L CNN
+F 1 "100K" H 4509 1205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4450 1250 50  0001 C CNN
+F 3 "~" H 4450 1250 50  0001 C CNN
+	1    4450 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 1150 4450 1050
+Wire Wire Line
+	4450 1050 3950 1050
+Connection ~ 3950 1050
+Wire Wire Line
+	3950 1050 3950 1100
+Wire Wire Line
+	4450 1350 4450 1400
+Wire Wire Line
+	4450 1600 4450 1650
+Wire Wire Line
+	4450 1650 3950 1650
+Connection ~ 3950 1650
+Wire Wire Line
+	3950 1650 3950 1300
+Text Notes 0 0  0    50   ~ 0
+#Global Setting\nV_adc_max = 2.4 #Max voltage the ADC can read\nADC_resolution = 4096 #Resolution of ADC\n\nV_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output voltage\n\n\nV_max =  5.5 #Max voltage of Power supply\nI_max = 120 #Max amperage of the Power supply\n\nI_over_current = 10 #Over current set point (amps)\nI_trickle_current = 1 #Trickle current set point (amps)\n\nV_trm = 4.2 #Power supply volatage set point\n\n
 $EndSCHEMATC

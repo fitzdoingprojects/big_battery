@@ -1,7 +1,8 @@
 from eseries import find_nearest, E24
+import sys
 
 #Global Setting
-V_adc_max = 2.4 #Max voltage the ADC can read
+V_adc_max = 2.35 #Max voltage the ADC can read
 ADC_resolution = 4096 #Resolution of ADC
 
 V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output voltage
@@ -10,7 +11,7 @@ V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output volt
 V_max =  5.5 #Max voltage of Power supply
 I_max = 120 #Max amperage of the Power supply
 
-I_over_current = 10 #Over current set point (amps)
+I_over_current = 50 #Over current set point (amps)
 I_trickle_current = 1 #Trickle current set point (amps)
 
 V_trm = 4.2 #Power supply volatage set point
@@ -42,30 +43,29 @@ def battery_voltage_divider():
     print("R1 = " + str(R1))
     return R1
 
-R1 = solar_voltage_divider()
+R1 = battery_voltage_divider()
 
 #Calculate solar ADC scaling factor
 
-def adc_solar_scaling_factor():
-    ADC_solar_scaling_factor = (V_adc_max / ADC_resolution) * ((R1 + R2) / R2)
-    print("ADC solar scaling factor: " + str(ADC_solar_scaling_factor))
-    return ADC_solar_scaling_factor
+def adc_scaling_factor():
+    ADC_scaling_factor = (V_adc_max / ADC_resolution) * ((R1 + R2) / R2)
+    print("ADC solar scaling factor: " + str(ADC_scaling_factor))
+    return ADC_scaling_factor
 
-ADC_solar_scaling_factor = adc_solar_scaling_factor()
+ADC_scaling_factor = adc_scaling_factor()
 
 # Calculate current bias resistors
 
-R3 = 500e5  #required for CB input impedance
-CB_min = -2.0
+R3 = 5e6  #required for CB input impedance
+CB_min = 2.0
 #resistor values for 
 def current_bias():
 
-    R4 = (V_op * R3) / (CB_min) - 2 * R3 
+    R4 = (V_op * R3) / (-CB_min) + 2 * R3 
     R4 = find_nearest(E24, R4)
     print("R4 = " + str(R4))
     return R4
-
-R4 = solar_current_bias()
+R4 = current_bias()
 
 # Calculate current gain resistors
 
@@ -80,16 +80,17 @@ def current_gain():
     print("R6 = " + str(R6))
     return R6
 
+R6 = current_gain()
 
 ### Over Current
 print("\ncurrent")
 
 R13 = 1e4
-VCB_overcurrent = -(I_over_current - 1.0) / 50.0
+VCB_overcurrent = (-I_trickle_current) / 50.0 + 1
 
 #determine resistor for
 def over_current():
-    V_b_plus = (V_op + (VCB_overcurrent)) * (R4 / (R4 + R3)) + VCB_overcurrent
+    V_b_plus = (V_op - (VCB_overcurrent)) * (R4 / (R4 + R3)) + VCB_overcurrent
     print("v_b+ = " + str(V_b_plus))
     V_b_out = (R6 / R5 + 1) * V_b_plus
     print("V_b_out = " + str(V_b_out))
@@ -98,12 +99,13 @@ def over_current():
     print("R12 = " + str(R12))
     return R12
 
+R12 = over_current()
 
-VCB_overcurrent = -(I_trickle_current - 1.0) / 50.0
+VCB_trickle = (-I_over_current) / 50.0 + 1
 
 ### Trickle current
 def trickle_current():
-    V_b_plus = (V_op + (I_trickle_current)) * (R4 / (R4 + R3)) + I_trickle_current
+    V_b_plus = (V_op - (VCB_trickle)) * (R4 / (R4 + R3)) + VCB_trickle
     print("v_b+ = " + str(V_b_plus))
     V_b_out = (R6 / R5 + 1) * V_b_plus
     print("V_b_out = " + str(V_b_out))
@@ -111,3 +113,101 @@ def trickle_current():
     R11 = find_nearest(E24, R11)
     print("R11 = " + str(R11))
     return R11
+
+R11 = trickle_current()
+
+
+#Update Resistor Values
+components = {
+    'R7' : R7,
+    'R8' : R8,
+    'R1' : R1,
+    'R2' : R2,
+    'R3'  : R3,
+    'R5'  : R5,
+    'R4'  : R4,
+    'R6'  : R6,
+    'R11' : R11,
+    'R12' : R12,
+    'R13' : R13
+}
+
+
+note = """#Global Setting
+V_adc_max = 2.4 #Max voltage the ADC can read
+ADC_resolution = 4096 #Resolution of ADC
+
+V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output voltage
+
+
+V_max =  5.5 #Max voltage of Power supply
+I_max = 120 #Max amperage of the Power supply
+
+I_over_current = 10 #Over current set point (amps)
+I_trickle_current = 1 #Trickle current set point (amps)
+
+V_trm = 4.2 #Power supply volatage set point
+
+
+"""
+
+print("\n\nUpdate Kicad")
+
+def add_note(note, x, y, sch_lines):
+    preamble = "Text Notes " + str(x) + " " + str(y) + "  0    50   ~ 0"
+    lines = note.splitlines()
+    note = "\\n".join(lines)
+    sch_lines.insert(len(sch_lines) - 1, preamble)
+    sch_lines.insert(len(sch_lines) - 1, note)
+
+
+def format_resistor_value(enumber):
+    #enumber = find_nearest(E24, val)
+    formatter = lambda n, suffix: str(n).rstrip('0').rstrip('.') + suffix
+
+    if enumber >= 1e9:
+        enumber /= 1e9
+        return str(enumber).rstrip('0').rstrip('.') + "G 1%"
+    elif enumber >= 1e6:
+        enumber /= 1e6
+        return str(enumber).rstrip('0').rstrip('.') + "M 1%"
+    elif enumber >= 1e3:
+        enumber /= 1e3
+        return str(enumber).rstrip('0').rstrip('.') + "K 1%"
+    else:
+        return str(enumber).rstrip('0').rstrip('.') + " 1%"
+
+def change_component_value(ref, val, sch_lines):
+    n = 0
+    for line in sch_lines:
+        n += 1
+        searchStr = "F 0 \"" + ref + "\""
+        if searchStr in line:
+            replaceStr = sch_lines[n].split('"')
+            replaceStr = replaceStr[0] + '"' + format_resistor_value(val) + '"' + replaceStr[2]
+            replaceStr.join('')
+            print(ref + ": " + replaceStr)
+            sch_lines[n] = replaceStr
+
+def main():
+    if(len(sys.argv) < 2):
+        print("please enter schematic location")
+        sys.exit(2)
+    
+    lines = ""
+
+    with open(sys.argv[1], 'r') as logfile:
+        schematic = logfile.read()
+        with open('backup.sch','w') as backup:
+            backup.write(schematic)
+        lines = schematic.splitlines()
+        for ref,val in components.items():
+            change_component_value(ref, val, lines)
+        add_note(note, 0 , 0, lines)
+    with open(sys.argv[1], 'w') as logfile:
+        logfile.write('\n'.join(lines))
+
+#F 0 "R28"
+    
+if __name__ == "__main__":
+    main()
