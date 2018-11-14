@@ -11,10 +11,10 @@ V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output volt
 V_max =  5.5 #Max voltage of Power supply
 I_max = 120 #Max amperage of the Power supply
 
-I_over_current = 50 #Over current set point (amps)
-I_trickle_current = 1 #Trickle current set point (amps)
+I_over_current = 20 #Over current set point (amps)
+I_trickle_current = 2 #Trickle current set point (amps)
 
-V_trm = 4.2 #Power supply volatage set point
+Vout_set = 4.2 #Power supply volatage set point
 
 
 ### LDO
@@ -56,12 +56,12 @@ ADC_scaling_factor = adc_scaling_factor()
 
 # Calculate current bias resistors
 
-R3 = 5e6  #required for CB input impedance
-CB_min = 2.0
+R3 = 5e5  #required for CB input impedance
+CB_min = -2.0 #TODO: should this be dependent on I_max? right now set roughly to 150A for I_max
 #resistor values for 
 def current_bias():
 
-    R4 = (V_op * R3) / (-CB_min) + 2 * R3 
+    R4 = (V_op * R3) / (CB_min) + 2 * R3 
     R4 = find_nearest(E24, R4)
     print("R4 = " + str(R4))
     return R4
@@ -70,7 +70,7 @@ R4 = current_bias()
 # Calculate current gain resistors
 
 R5 = 1e4
-CB_max = 1
+CB_max = 1.5
 
 #resistor values for 
 def current_gain():
@@ -86,7 +86,7 @@ R6 = current_gain()
 print("\ncurrent")
 
 R13 = 1e4
-VCB_overcurrent = (-I_trickle_current) / 50.0 + 1
+VCB_overcurrent = (-I_trickle_current) / 50.0 + CB_max
 
 #determine resistor for
 def over_current():
@@ -101,7 +101,7 @@ def over_current():
 
 R12 = over_current()
 
-VCB_trickle = (-I_over_current) / 50.0 + 1
+VCB_trickle = (-I_over_current) / 50.0 + CB_max
 
 ### Trickle current
 def trickle_current():
@@ -117,6 +117,25 @@ def trickle_current():
 R11 = trickle_current()
 
 
+
+### Voltage set point
+
+# Output Vout_set = (Vtrm / 2.5) * 5
+# Vtrm = Vout_set * (2.5 / 5)
+# Vtrm = (R15 / (R15 + R16)) * V_op
+# Vtrm * R16 = R15 * V_op - Vtrm * R15
+# R16 = R15 * V_op - Vout_set * (2.5 / 5) * R15
+
+R15 = 1e4
+
+def voltage_set():
+    R16 = R15 * V_op - Vout_set * (2.5/5) * R15
+    R16 = find_nearest(E24, R16)
+    print("R16 = " + str(R16))
+    return R16
+
+R16 = voltage_set()
+
 #Update Resistor Values
 components = {
     'R7' : R7,
@@ -129,12 +148,14 @@ components = {
     'R6'  : R6,
     'R11' : R11,
     'R12' : R12,
-    'R13' : R13
+    'R13' : R13,
+    'R15' : R15,
+    'R16' : R16
 }
 
 
 note = """#Global Setting
-V_adc_max = 2.4 #Max voltage the ADC can read
+V_adc_max = 2.35 #Max voltage the ADC can read
 ADC_resolution = 4096 #Resolution of ADC
 
 V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output voltage
@@ -143,10 +164,10 @@ V_op = 3.3 #Supply voltage of OP-AMPs and analog circuitry, sets LDO output volt
 V_max =  5.5 #Max voltage of Power supply
 I_max = 120 #Max amperage of the Power supply
 
-I_over_current = 10 #Over current set point (amps)
+I_over_current = 50 #Over current set point (amps)
 I_trickle_current = 1 #Trickle current set point (amps)
 
-V_trm = 4.2 #Power supply volatage set point
+Vout_set = 4.2 #Power supply volatage set point
 
 
 """

@@ -20,6 +20,23 @@ Circuit:
 TESTING:
 	* Double check default output voltage of 4.2V
 	* Double check current graph/equation
-	
-	
+
+Results:
+    With 0 current, CB measuers 1.221V
+    1A , 1.5V
+    2A, 1.13
+	3A, 1.098
+	4A, 1.069
+	5A, 1.04
 SHOULD REQUIRE DIRECT TURN OFF?
+
+
+
+BOARD REVISION:
+ * ADD 3.3V test point
+ * ADD potentiometer for adjusting current and voltage set points
+ * change plus and minus inputs on op-amp B (because CB voltage decreases as voltage rises)
+ * add reverse input protection diode
+ * make sure trickle disable is pulled low
+ * add some leds for signalling
+
