@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L big_battery-rescue:LMV324-Amplifier_Operational U2
+L Amplifier_Operational:LM324 U2
 U 1 1 5BCEB1BA
 P 3200 5300
 F 0 "U2" H 3300 5550 50  0000 C CNN
@@ -26,7 +26,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lmv324.pdf" H 3250 5500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:LMV324-Amplifier_Operational U2
+L Amplifier_Operational:LM324 U2
 U 2 1 5BCEB218
 P 7250 5200
 F 0 "U2" H 7250 5567 50  0000 C CNN
@@ -37,7 +37,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lmv324.pdf" H 7300 5400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:LMV324-Amplifier_Operational U2
+L Amplifier_Operational:LM324 U2
 U 3 1 5BCEB2D7
 P 9750 5250
 F 0 "U2" H 9750 5617 50  0000 C CNN
@@ -48,7 +48,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lmv324.pdf" H 9800 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:LMV324-Amplifier_Operational U2
+L Amplifier_Operational:LM324 U2
 U 4 1 5BCEB31B
 P 3150 3100
 F 0 "U2" H 3150 3467 50  0000 C CNN
@@ -59,7 +59,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lmv324.pdf" H 3200 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:LMV324-Amplifier_Operational U2
+L Amplifier_Operational:LM324 U2
 U 5 1 5BCEB382
 P 3200 5300
 F 0 "U2" H 3158 5300 50  0000 L CNN
@@ -70,7 +70,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lmv324.pdf" H 3250 5500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:C_Small-Device C3
+L Device:C_Small C3
 U 1 1 5BCEB613
 P 3400 4600
 F 0 "C3" H 3492 4646 50  0000 L CNN
@@ -81,7 +81,7 @@ F 3 "~" H 3400 4600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:L_Small-Device L1
+L Device:L_Small L1
 U 1 1 5BCEB8DE
 P 2900 4450
 F 0 "L1" V 3085 4450 50  0000 C CNN
@@ -92,7 +92,7 @@ F 3 "~" H 2900 4450 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L big_battery-rescue:AP1117-ADJ-Regulator_Linear U1
+L Regulator_Linear:AP1117-ADJ U1
 U 1 1 5BCEBAD3
 P 3050 1000
 F 0 "U1" H 3050 1242 50  0000 C CNN
@@ -103,7 +103,7 @@ F 3 "http://www.diodes.com/datasheets/AP1117.pdf" H 3150 750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:C_Small-Device C1
+L Device:C_Small C1
 U 1 1 5BCEBC6F
 P 2300 1200
 F 0 "C1" H 2392 1246 50  0000 L CNN
@@ -114,7 +114,7 @@ F 3 "~" H 2300 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:C_Small-Device C4
+L Device:C_Small C4
 U 1 1 5BCEBCFB
 P 3950 1200
 F 0 "C4" H 4042 1246 50  0000 L CNN
@@ -125,7 +125,7 @@ F 3 "~" H 3950 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:+12V-power #PWR03
+L power:+12V #PWR03
 U 1 1 5BCEBE59
 P 2300 850
 F 0 "#PWR03" H 2300 700 50  0001 C CNN
@@ -147,7 +147,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 1000 3950 1050
 $Comp
-L big_battery-rescue:R_Small-Device R7
+L Device:R_Small_US R7
 U 1 1 5BCEBF47
 P 3500 1200
 F 0 "R7" H 3559 1246 50  0000 L CNN
@@ -158,7 +158,7 @@ F 3 "~" H 3500 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R8
+L Device:R_Small_US R8
 U 1 1 5BCEC08F
 P 3500 1600
 F 0 "R8" H 3559 1646 50  0000 L CNN
@@ -183,7 +183,7 @@ Connection ~ 3500 1000
 Wire Wire Line
 	3500 1000 3950 1000
 $Comp
-L big_battery-rescue:GND-power #PWR04
+L power:GND #PWR04
 U 1 1 5BCEC2C9
 P 2300 1750
 F 0 "#PWR04" H 2300 1500 50  0001 C CNN
@@ -194,7 +194,7 @@ F 3 "" H 2300 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:GND-power #PWR09
+L power:GND #PWR09
 U 1 1 5BCEC2F3
 P 3500 1750
 F 0 "#PWR09" H 3500 1500 50  0001 C CNN
@@ -205,7 +205,7 @@ F 3 "" H 3500 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:GND-power #PWR011
+L power:GND #PWR011
 U 1 1 5BCEC316
 P 3950 1750
 F 0 "#PWR011" H 3950 1500 50  0001 C CNN
@@ -222,7 +222,7 @@ Wire Wire Line
 Wire Wire Line
 	2300 1300 2300 1350
 $Comp
-L big_battery-rescue:+3V3-power #PWR010
+L power:+3.3V #PWR010
 U 1 1 5BCEC946
 P 3950 850
 F 0 "#PWR010" H 3950 700 50  0001 C CNN
@@ -236,7 +236,7 @@ Wire Wire Line
 	3950 850  3950 1000
 Connection ~ 3950 1000
 $Comp
-L big_battery-rescue:R_Small-Device R3
+L Device:R_Small_US R3
 U 1 1 5BCED0F5
 P 2300 5200
 F 0 "R3" V 2104 5200 50  0000 C CNN
@@ -247,7 +247,7 @@ F 3 "~" H 2300 5200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R4
+L Device:R_Small_US R4
 U 1 1 5BCED19D
 P 2650 4850
 F 0 "R4" H 2591 4804 50  0000 R CNN
@@ -267,7 +267,7 @@ Wire Wire Line
 Text Label 1200 4100 0    50   ~ 0
 CB
 $Comp
-L big_battery-rescue:+3V3-power #PWR05
+L power:+3.3V #PWR05
 U 1 1 5BCEDDE7
 P 2650 4350
 F 0 "#PWR05" H 2650 4200 50  0001 C CNN
@@ -284,7 +284,7 @@ Wire Wire Line
 Wire Wire Line
 	3400 4450 3100 4450
 $Comp
-L big_battery-rescue:GND-power #PWR08
+L power:GND #PWR08
 U 1 1 5BCEE89B
 P 3400 4750
 F 0 "#PWR08" H 3400 4500 50  0001 C CNN
@@ -297,7 +297,7 @@ $EndComp
 Wire Wire Line
 	3400 4700 3400 4750
 $Comp
-L big_battery-rescue:C_Small-Device C2
+L Device:C_Small C2
 U 1 1 5BCEFC9A
 P 3100 6500
 F 0 "C2" V 2871 6500 50  0000 C CNN
@@ -308,7 +308,7 @@ F 3 "~" H 3100 6500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R6
+L Device:R_Small_US R6
 U 1 1 5BCEFDEB
 P 3100 6150
 F 0 "R6" V 3296 6150 50  0000 C CNN
@@ -319,7 +319,7 @@ F 3 "~" H 3100 6150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R5
+L Device:R_Small_US R5
 U 1 1 5BCEFEBA
 P 2650 6750
 F 0 "R5" H 2709 6796 50  0000 L CNN
@@ -330,7 +330,7 @@ F 3 "~" H 2650 6750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:GND-power #PWR07
+L power:GND #PWR07
 U 1 1 5BCF04BA
 P 3100 5650
 F 0 "#PWR07" H 3100 5400 50  0001 C CNN
@@ -368,7 +368,7 @@ Wire Wire Line
 	2650 6650 2650 6500
 Connection ~ 2650 6500
 $Comp
-L big_battery-rescue:GND-power #PWR06
+L power:GND #PWR06
 U 1 1 5BCF396D
 P 2650 6950
 F 0 "#PWR06" H 2650 6700 50  0001 C CNN
@@ -394,7 +394,7 @@ Connection ~ 2650 4450
 Wire Wire Line
 	2650 4450 2650 4750
 $Comp
-L big_battery-rescue:R_Small-Device R14
+L Device:R_Small_US R14
 U 1 1 5BCFEDF2
 P 7350 4550
 F 0 "R14" V 7546 4550 50  0000 C CNN
@@ -405,7 +405,7 @@ F 3 "~" H 7350 4550 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L big_battery-rescue:C_Small-Device C5
+L Device:C_Small C5
 U 1 1 5BCFEF1E
 P 7000 4550
 F 0 "C5" V 6771 4550 50  0000 C CNN
@@ -416,7 +416,7 @@ F 3 "~" H 7000 4550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R13
+L Device:R_Small_US R13
 U 1 1 5BCFF056
 P 6550 5650
 F 0 "R13" H 6491 5696 50  0000 R CNN
@@ -427,7 +427,7 @@ F 3 "~" H 6550 5650 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R11
+L Device:R_Small_US R11
 U 1 1 5BCFF18F
 P 5950 5650
 F 0 "R11" H 5891 5604 50  0000 R CNN
@@ -438,7 +438,7 @@ F 3 "~" H 5950 5650 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L big_battery-rescue:Q_NMOS_GSD-Device Q1
+L Device:Q_NMOS_GSD Q1
 U 1 1 5BCFF343
 P 5850 6050
 F 0 "Q1" H 6055 6096 50  0000 L CNN
@@ -449,7 +449,7 @@ F 3 "~" H 5850 6050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R10
+L Device:R_Small_US R10
 U 1 1 5BCFF619
 P 5500 6250
 F 0 "R10" H 5441 6204 50  0000 R CNN
@@ -460,7 +460,7 @@ F 3 "~" H 5500 6250 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R9
+L Device:R_Small_US R9
 U 1 1 5BCFF687
 P 5200 6050
 F 0 "R9" V 5396 6050 50  0000 C CNN
@@ -471,7 +471,7 @@ F 3 "~" H 5200 6050 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R12
+L Device:R_Small_US R12
 U 1 1 5BCFF770
 P 6250 4450
 F 0 "R12" H 6191 4404 50  0000 R CNN
@@ -505,7 +505,7 @@ Wire Wire Line
 Wire Wire Line
 	5950 6500 5950 6250
 $Comp
-L big_battery-rescue:GND-power #PWR015
+L power:GND #PWR015
 U 1 1 5BD08424
 P 6250 6650
 F 0 "#PWR015" H 6250 6400 50  0001 C CNN
@@ -521,7 +521,7 @@ Connection ~ 6250 6500
 Wire Wire Line
 	6250 6500 5950 6500
 $Comp
-L big_battery-rescue:+3V3-power #PWR014
+L power:+3.3V #PWR014
 U 1 1 5BD0D06A
 P 6250 4300
 F 0 "#PWR014" H 6250 4150 50  0001 C CNN
@@ -536,7 +536,7 @@ Wire Wire Line
 Text Label 4850 6050 2    50   ~ 0
 TRICKLE_DIS
 $Comp
-L big_battery-rescue:R_Small-Device R16
+L Device:R_Small_US R16
 U 1 1 5BD15B9A
 P 8750 5450
 F 0 "R16" H 8691 5496 50  0000 R CNN
@@ -547,7 +547,7 @@ F 3 "~" H 8750 5450 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R15
+L Device:R_Small_US R15
 U 1 1 5BD15C2E
 P 8750 4850
 F 0 "R15" H 8691 4804 50  0000 R CNN
@@ -580,7 +580,7 @@ Wire Wire Line
 Wire Wire Line
 	8750 4750 8750 4550
 $Comp
-L big_battery-rescue:GND-power #PWR017
+L power:GND #PWR017
 U 1 1 5BD20C57
 P 8750 5800
 F 0 "#PWR017" H 8750 5550 50  0001 C CNN
@@ -591,7 +591,7 @@ F 3 "" H 8750 5800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:+3V3-power #PWR016
+L power:+3.3V #PWR016
 U 1 1 5BD20D04
 P 8750 4550
 F 0 "#PWR016" H 8750 4400 50  0001 C CNN
@@ -616,7 +616,7 @@ Wire Wire Line
 Wire Wire Line
 	8750 4950 8750 5150
 $Comp
-L big_battery-rescue:D_Schottky_Small-Device D1
+L Device:D_Schottky_Small D1
 U 1 1 5BD1078D
 P 8000 5200
 F 0 "D1" H 8000 5313 50  0000 C CNN
@@ -632,7 +632,7 @@ Connection ~ 8750 5200
 Wire Wire Line
 	8750 5200 8750 5350
 $Comp
-L big_battery-rescue:C_Small-Device C6
+L Device:C_Small C6
 U 1 1 5BD14EFB
 P 8350 5450
 F 0 "C6" H 8442 5496 50  0000 L CNN
@@ -665,7 +665,7 @@ Wire Wire Line
 Wire Wire Line
 	2600 3200 2850 3200
 $Comp
-L big_battery-rescue:R_Small-Device R2
+L Device:R_Small_US R2
 U 1 1 5BD23F1D
 P 2250 3250
 F 0 "R2" H 2191 3204 50  0000 R CNN
@@ -676,7 +676,7 @@ F 3 "~" H 2250 3250 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R1
+L Device:R_Small_US R1
 U 1 1 5BD23FA1
 P 2250 2750
 F 0 "R1" H 2191 2704 50  0000 R CNN
@@ -696,7 +696,7 @@ Connection ~ 2250 3000
 Text Notes 2600 3500 0    50   ~ 0
 HAD TO USE UP EXTRA OP-AMP
 $Comp
-L big_battery-rescue:GND-power #PWR02
+L power:GND #PWR02
 U 1 1 5BD28CB4
 P 2250 3550
 F 0 "#PWR02" H 2250 3300 50  0001 C CNN
@@ -714,7 +714,7 @@ Connection ~ 3800 3100
 Text Label 4150 3100 0    50   ~ 0
 V_Out
 $Comp
-L big_battery-rescue:Conn_01x02_Female-Connector J2
+L Connector:Conn_01x02_Female J2
 U 1 1 5BD0A582
 P 900 1150
 F 0 "J2" H 794 1335 50  0000 C CNN
@@ -765,7 +765,7 @@ Wire Wire Line
 Wire Wire Line
 	1400 4200 1400 5450
 $Comp
-L big_battery-rescue:GND-power #PWR01
+L power:GND #PWR01
 U 1 1 5BD41058
 P 1400 5450
 F 0 "#PWR01" H 1400 5200 50  0001 C CNN
@@ -785,7 +785,7 @@ Connection ~ 6550 5100
 Wire Wire Line
 	3550 5300 4800 5300
 $Comp
-L big_battery-rescue:Conn_01x04_Female-Connector J1
+L Connector:Conn_01x04_Female J1
 U 1 1 5BD54D73
 P 850 4000
 F 0 "J1" H 744 4285 50  0000 C CNN
@@ -824,7 +824,7 @@ Wire Wire Line
 Text Notes 10350 5250 0    50   ~ 0
 Voltage Trim
 $Comp
-L big_battery-rescue:C_Small-Device C7
+L Device:C_Small C7
 U 1 1 5BCFF17E
 P 1900 3250
 F 0 "C7" H 1992 3296 50  0000 L CNN
@@ -851,7 +851,7 @@ Wire Wire Line
 Wire Wire Line
 	4900 6050 5100 6050
 $Comp
-L big_battery-rescue:Conn_01x04_Female-Connector J3
+L Connector:Conn_01x04_Female J3
 U 1 1 5BD0CE4E
 P 10600 3200
 F 0 "J3" H 10494 3485 50  0000 C CNN
@@ -862,7 +862,7 @@ F 3 "~" H 10600 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L big_battery-rescue:GND-power #PWR0101
+L power:GND #PWR0101
 U 1 1 5BD15DF3
 P 10250 3500
 F 0 "#PWR0101" H 10250 3250 50  0001 C CNN
@@ -895,7 +895,7 @@ Connection ~ 5500 6050
 Wire Wire Line
 	5500 6050 5650 6050
 $Comp
-L big_battery-rescue:LED_Small-Device D2
+L Device:LED_Small D2
 U 1 1 5BD9A687
 P 4450 1500
 F 0 "D2" V 4496 1432 50  0000 R CNN
@@ -906,7 +906,7 @@ F 3 "~" V 4450 1500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L big_battery-rescue:R_Small-Device R17
+L Device:R_Small_US R17
 U 1 1 5BD9AD09
 P 4450 1250
 F 0 "R17" H 4509 1296 50  0000 L CNN
