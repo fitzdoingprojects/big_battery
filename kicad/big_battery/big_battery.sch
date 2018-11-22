@@ -147,7 +147,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 1000 3950 1050
 $Comp
-L Device:R_Small_US R7
+L Device:R_Small R7
 U 1 1 5BCEBF47
 P 3500 1200
 F 0 "R7" H 3559 1246 50  0000 L CNN
@@ -158,7 +158,7 @@ F 3 "~" H 3500 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small_US R8
+L Device:R_Small R8
 U 1 1 5BCEC08F
 P 3500 1600
 F 0 "R8" H 3559 1646 50  0000 L CNN
@@ -236,7 +236,7 @@ Wire Wire Line
 	3950 850  3950 1000
 Connection ~ 3950 1000
 $Comp
-L Device:R_Small_US R3
+L Device:R_Small R3
 U 1 1 5BCED0F5
 P 2300 5200
 F 0 "R3" V 2104 5200 50  0000 C CNN
@@ -247,7 +247,7 @@ F 3 "~" H 2300 5200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small_US R4
+L Device:R_Small R4
 U 1 1 5BCED19D
 P 2650 4850
 F 0 "R4" H 2591 4804 50  0000 R CNN
@@ -308,7 +308,7 @@ F 3 "~" H 3100 6500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small_US R6
+L Device:R_Small R6
 U 1 1 5BCEFDEB
 P 3100 6150
 F 0 "R6" V 3296 6150 50  0000 C CNN
@@ -319,7 +319,7 @@ F 3 "~" H 3100 6150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R_Small_US R5
+L Device:R_Small R5
 U 1 1 5BCEFEBA
 P 2650 6750
 F 0 "R5" H 2709 6796 50  0000 L CNN
@@ -394,7 +394,7 @@ Connection ~ 2650 4450
 Wire Wire Line
 	2650 4450 2650 4750
 $Comp
-L Device:R_Small_US R14
+L Device:R_Small R14
 U 1 1 5BCFEDF2
 P 7350 4550
 F 0 "R14" V 7546 4550 50  0000 C CNN
@@ -416,7 +416,7 @@ F 3 "~" H 7000 4550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small_US R13
+L Device:R_Small R13
 U 1 1 5BCFF056
 P 6550 5650
 F 0 "R13" H 6491 5696 50  0000 R CNN
@@ -427,7 +427,7 @@ F 3 "~" H 6550 5650 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small_US R11
+L Device:R_Small R11
 U 1 1 5BCFF18F
 P 5950 5650
 F 0 "R11" H 5891 5604 50  0000 R CNN
@@ -449,7 +449,7 @@ F 3 "~" H 5850 6050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small_US R10
+L Device:R_Small R10
 U 1 1 5BCFF619
 P 5500 6250
 F 0 "R10" H 5441 6204 50  0000 R CNN
@@ -460,7 +460,7 @@ F 3 "~" H 5500 6250 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L Device:R_Small_US R9
+L Device:R_Small R9
 U 1 1 5BCFF687
 P 5200 6050
 F 0 "R9" V 5396 6050 50  0000 C CNN
@@ -471,7 +471,7 @@ F 3 "~" H 5200 6050 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R_Small_US R12
+L Device:R_Small R12
 U 1 1 5BCFF770
 P 6250 4450
 F 0 "R12" H 6191 4404 50  0000 R CNN
@@ -536,7 +536,7 @@ Wire Wire Line
 Text Label 4850 6050 2    50   ~ 0
 TRICKLE_DIS
 $Comp
-L Device:R_Small_US R16
+L Device:R_Small R16
 U 1 1 5BD15B9A
 P 8750 5450
 F 0 "R16" H 8691 5496 50  0000 R CNN
@@ -547,7 +547,7 @@ F 3 "~" H 8750 5450 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small_US R15
+L Device:R_Small R15
 U 1 1 5BD15C2E
 P 8750 4850
 F 0 "R15" H 8691 4804 50  0000 R CNN
@@ -665,7 +665,7 @@ Wire Wire Line
 Wire Wire Line
 	2600 3200 2850 3200
 $Comp
-L Device:R_Small_US R2
+L Device:R_Small R2
 U 1 1 5BD23F1D
 P 2250 3250
 F 0 "R2" H 2191 3204 50  0000 R CNN
@@ -676,7 +676,7 @@ F 3 "~" H 2250 3250 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:R_Small_US R1
+L Device:R_Small R1
 U 1 1 5BD23FA1
 P 2250 2750
 F 0 "R1" H 2191 2704 50  0000 R CNN
@@ -906,7 +906,7 @@ F 3 "~" V 4450 1500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R_Small_US R17
+L Device:R_Small R17
 U 1 1 5BD9AD09
 P 4450 1250
 F 0 "R17" H 4509 1296 50  0000 L CNN
