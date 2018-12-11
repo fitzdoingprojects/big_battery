@@ -14,6 +14,23 @@
 // $[Generated Includes]
 // [Generated Includes]$
 
+
+
+//-----------------------------------------------------------------------------
+// Externs
+//-----------------------------------------------------------------------------
+extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
+extern uint8_t RX_BUFFER[UART_BUFFERSIZE];
+extern uint8_t TX_index;
+extern uint8_t TX_size;
+extern uint8_t RX_size;
+extern uint8_t UART_Output_First;
+extern uint8_t TX_Ready;
+extern uint8_t Byte;
+
+
+void uart_write(char * buf);
+
 //-----------------------------------------------------------------------------
 // SiLabs_Startup() Routine
 // ----------------------------------------------------------------------------
@@ -31,14 +48,26 @@ void SiLabs_Startup (void)
 //-----------------------------------------------------------------------------
 // main() Routine
 // ----------------------------------------------------------------------------
-int main (void)
-{
-  // Call hardware initialization routine
-  enter_DefaultMode_from_RESET();
-  
-  while (1) 
-  {
-    // $[Generated Run-time code]
-    // [Generated Run-time code]$
-  }                             
+int main (void) {
+	// Call hardware initialization routine
+	enter_DefaultMode_from_RESET();
+
+	while(1) {
+	// $[Generated Run-time code]
+	// [Generated Run-time code]$
+		uart_write("this is a test");
+		while(!TX_Ready);
+	}
 }
+
+
+void uart_write(char * buf) {
+	TX_Ready = 0;
+	TX_size = 0;
+	while((buf[TX_size] != '\n') && (TX_size < UART_BUFFERSIZE)) {
+		TX_BUFFER[TX_size] = buf[TX_size];
+		TX_size++;
+	}
+	SBUF0 = TX_BUFFER[0];
+}
+

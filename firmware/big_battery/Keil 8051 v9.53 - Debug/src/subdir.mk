@@ -8,10 +8,12 @@ A51_UPPER_SRCS += \
 
 C_SRCS += \
 ../src/InitDevice.c \
+../src/Interrupts.c \
 ../src/big_battery_main.c 
 
 OBJS += \
 ./src/InitDevice.OBJ \
+./src/Interrupts.OBJ \
 ./src/SILABS_STARTUP.OBJ \
 ./src/big_battery_main.OBJ 
 
@@ -25,6 +27,8 @@ src/%.OBJ: ../src/%.c
 	@echo ' '
 
 src/InitDevice.OBJ: /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/EFM8BB1/inc/SI_EFM8BB1_Register_Enums.h /media/fitz/data/dropbox/projects/ee/big_battery/firmware/big_battery/inc/InitDevice.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/EFM8BB1/inc/SI_EFM8BB1_Defs.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/si_toolchain.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/stdint.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/stdbool.h
+
+src/Interrupts.OBJ: /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/EFM8BB1/inc/SI_EFM8BB1_Register_Enums.h /media/fitz/data/dropbox/projects/ee/big_battery/firmware/big_battery/inc/InitDevice.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/EFM8BB1/inc/SI_EFM8BB1_Defs.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/si_toolchain.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/stdint.h /home/fitz/Downloads/SimplicityStudio_v4/developer/sdks/8051/v4.1.5/Device/shared/si8051Base/stdbool.h
 
 src/%.OBJ: ../src/%.A51
 	@echo 'Building file: $<'
