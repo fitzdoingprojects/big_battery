@@ -1,0 +1,4 @@
+"./src/InitDevice.OBJ",
+"./src/SILABS_STARTUP.OBJ",
+"./src/big_battery_main.OBJ"
+TO "BIG_BATTERY.OMF.CRBUILD" REMOVEUNUSED PRINT(.\big_battery.m51) PAGEWIDTH (120) PAGELENGTH (65) CLASSES( ECODE(C:0x0 - C:0x7fe), HCONST(C:0x0 - C:0x7fe), XDATA(X:0x0 - X:0x1))
