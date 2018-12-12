@@ -25,6 +25,7 @@ extern void enter_DefaultMode_from_RESET(void) {
 	PORTS_0_enter_DefaultMode_from_RESET();
 	PBCFG_0_enter_DefaultMode_from_RESET();
 	ADC_0_enter_DefaultMode_from_RESET();
+	VREF_0_enter_DefaultMode_from_RESET();
 	CLOCK_0_enter_DefaultMode_from_RESET();
 	TIMER01_0_enter_DefaultMode_from_RESET();
 	TIMER_SETUP_0_enter_DefaultMode_from_RESET();
@@ -49,10 +50,10 @@ extern void WDT_0_enter_DefaultMode_from_RESET(void) {
 extern void PBCFG_0_enter_DefaultMode_from_RESET(void) {
 	// $[XBR2 - Port I/O Crossbar 2]
 	/***********************************************************************
-	 - Weak Pullups enabled 
+	 - Weak Pullups disabled
 	 - Crossbar enabled
 	 ***********************************************************************/
-	XBR2 = XBR2_WEAKPUD__PULL_UPS_ENABLED | XBR2_XBARE__ENABLED;
+	XBR2 = XBR2_WEAKPUD__PULL_UPS_DISABLED | XBR2_XBARE__ENABLED;
 	// [XBR2 - Port I/O Crossbar 2]$
 
 	// $[PRTDRV - Port Drive Strength]
@@ -218,20 +219,33 @@ extern void PORTS_0_enter_DefaultMode_from_RESET(void) {
 	/***********************************************************************
 	 - P0.0 output is open-drain
 	 - P0.1 output is open-drain
-	 - P0.2 output is open-drain
+	 - P0.2 output is push-pull
 	 - P0.3 output is open-drain
 	 - P0.4 output is push-pull
 	 - P0.5 output is open-drain
 	 - P0.6 output is open-drain
-	 - P0.7 output is open-drain
+	 - P0.7 output is push-pull
 	 ***********************************************************************/
 	P0MDOUT = P0MDOUT_B0__OPEN_DRAIN | P0MDOUT_B1__OPEN_DRAIN
-			| P0MDOUT_B2__OPEN_DRAIN | P0MDOUT_B3__OPEN_DRAIN
+			| P0MDOUT_B2__PUSH_PULL | P0MDOUT_B3__OPEN_DRAIN
 			| P0MDOUT_B4__PUSH_PULL | P0MDOUT_B5__OPEN_DRAIN
-			| P0MDOUT_B6__OPEN_DRAIN | P0MDOUT_B7__OPEN_DRAIN;
+			| P0MDOUT_B6__OPEN_DRAIN | P0MDOUT_B7__PUSH_PULL;
 	// [P0MDOUT - Port 0 Output Mode]$
 
 	// $[P0MDIN - Port 0 Input Mode]
+	/***********************************************************************
+	 - P0.0 pin is configured for analog mode
+	 - P0.1 pin is configured for analog mode
+	 - P0.2 pin is configured for digital mode
+	 - P0.3 pin is configured for digital mode
+	 - P0.4 pin is configured for digital mode
+	 - P0.5 pin is configured for digital mode
+	 - P0.6 pin is configured for digital mode
+	 - P0.7 pin is configured for digital mode
+	 ***********************************************************************/
+	P0MDIN = P0MDIN_B0__ANALOG | P0MDIN_B1__ANALOG | P0MDIN_B2__DIGITAL
+			| P0MDIN_B3__DIGITAL | P0MDIN_B4__DIGITAL | P0MDIN_B5__DIGITAL
+			| P0MDIN_B6__DIGITAL | P0MDIN_B7__DIGITAL;
 	// [P0MDIN - Port 0 Input Mode]$
 
 	// $[P0SKIP - Port 0 Skip]
@@ -430,12 +444,12 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 
 	// $[ADC0CF - ADC0 Configuration]
 	/***********************************************************************
-	 - SAR Clock Divider = 0x1F
+	 - SAR Clock Divider = 0x1E
 	 - ADC0 operates in 10-bit or 12-bit mode 
 	 - The on-chip PGA gain is 1
 	 - Normal Track Mode
 	 ***********************************************************************/
-	ADC0CF = (0x1F << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
+	ADC0CF = (0x1E << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
 			| ADC0CF_ADGN__GAIN_1 | ADC0CF_ADTM__TRACK_NORMAL;
 	// [ADC0CF - ADC0 Configuration]$
 
@@ -475,6 +489,20 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 	 ***********************************************************************/
 	ADC0CN0 |= ADC0CN0_ADBMEN__BURST_ENABLED;
 	// [ADC0CN0 - ADC0 Control 0]$
+
+}
+
+extern void VREF_0_enter_DefaultMode_from_RESET(void) {
+	// $[REF0CN - Voltage Reference Control]
+	/***********************************************************************
+	 - Enable the Temperature Sensor
+	 - The ADC0 ground reference is the GND pin
+	 - The internal reference operates at 1.65 V nominal
+	 - The ADC0 voltage reference is the internal voltage reference
+	 ***********************************************************************/
+	REF0CN = REF0CN_TEMPE__TEMP_ENABLED | REF0CN_GNDSL__GND_PIN
+			| REF0CN_IREFLVL__1P65 | REF0CN_REFSL__INTERNAL_VREF;
+	// [REF0CN - Voltage Reference Control]$
 
 }
 

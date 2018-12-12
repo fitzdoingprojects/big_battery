@@ -17,6 +17,13 @@
 
 
 //-----------------------------------------------------------------------------
+// Global CONSTANTS
+//-----------------------------------------------------------------------------
+SI_SBIT(TRICKLE_DIS, SFR_P0, 2);               // P0.2 Trickle Disable
+SI_SBIT(OUTPUT_EN, SFR_P0, 7);               // P0.7 Output Enable
+
+
+//-----------------------------------------------------------------------------
 // Externs
 //-----------------------------------------------------------------------------
 extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
@@ -27,7 +34,6 @@ extern uint8_t RX_size;
 extern uint8_t UART_Output_First;
 extern uint8_t TX_Ready;
 extern uint8_t Byte;
-
 
 void uart_write(char * buf);
 void set_pwm0(uint16_t duty);
@@ -54,6 +60,9 @@ int main (void) {
 	uint16_t duty = 0;
 	enter_DefaultMode_from_RESET();
 
+	TRICKLE_DIS = 1;
+	OUTPUT_EN = 1;
+
 	while(1) {
 	// $[Generated Run-time code]
 	// [Generated Run-time code]$
@@ -64,6 +73,11 @@ int main (void) {
 			duty++;
 		} else {
 			duty = 0;
+		}
+		if(duty % 10 == 0) {
+			TRICKLE_DIS = ~TRICKLE_DIS;
+			OUTPUT_EN = ~OUTPUT_EN;
+
 		}
 	}
 }

@@ -6,6 +6,7 @@
     <property object="ADC_0" propertyId="adc.accumulatorconfiguration.repeatcount" value="64 conversions"/>
     <property object="ADC_0" propertyId="adc.configuration.gaincontrol" value="1x gain"/>
     <property object="ADC_0" propertyId="adc.configuration.resolution" value="12-bit"/>
+    <property object="ADC_0" propertyId="adc.configuration.sarclockdivider" value="30"/>
     <property object="ADC_0" propertyId="adc.control.enableburstmode" value="Enabled"/>
     <property object="CLOCK_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.clocksourcedivider" value="SYSCLK / 1"/>
@@ -18,11 +19,24 @@
     <property object="INTERRUPT_0" propertyId="interrupt.extendedinterruptenable1.enableprogrammablecounterarraypca0interrupt" value="Enabled"/>
     <property object="INTERRUPT_0" propertyId="interrupt.interruptenable.enableallinterrupts" value="Enabled"/>
     <property object="INTERRUPT_0" propertyId="interrupt.interruptenable.enableuart0interrupt" value="Enabled"/>
+    <property object="P0.0" propertyId="ports.settings.inputmode" value="Analog"/>
+    <property object="P0.0" propertyId="ports.settings.iomode" value="Analog I/O"/>
+    <property object="P0.0" propertyId="ports.settings.label" value="VOLTAGE"/>
     <property object="P0.0" propertyId="ports.settings.skip" value="Skipped"/>
+    <property object="P0.1" propertyId="ports.settings.inputmode" value="Analog"/>
+    <property object="P0.1" propertyId="ports.settings.iomode" value="Analog I/O"/>
+    <property object="P0.1" propertyId="ports.settings.label" value="CURRENT"/>
     <property object="P0.1" propertyId="ports.settings.skip" value="Skipped"/>
+    <property object="P0.2" propertyId="ports.settings.iomode" value="Digital Push-Pull Output"/>
+    <property object="P0.2" propertyId="ports.settings.label" value="TRICKLE_DIS"/>
+    <property object="P0.2" propertyId="ports.settings.outputmode" value="Push-pull"/>
     <property object="P0.2" propertyId="ports.settings.skip" value="Skipped"/>
     <property object="P0.4" propertyId="ports.settings.iomode" value="Digital Push-Pull Output"/>
     <property object="P0.4" propertyId="ports.settings.outputmode" value="Push-pull"/>
+    <property object="P0.7" propertyId="ports.settings.iomode" value="Digital Push-Pull Output"/>
+    <property object="P0.7" propertyId="ports.settings.label" value="OUTPUT_EN"/>
+    <property object="P0.7" propertyId="ports.settings.outputmode" value="Push-pull"/>
+    <property object="PBCFG_0" propertyId="pbcfg.settings.disableportioweakpullup" value="Pull-ups disabled"/>
     <property object="PBCFG_0" propertyId="pbcfg.settings.enablecrossbar" value="Enabled"/>
     <property object="PCACH_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="PCACH_0" propertyId="pcach.pcachannelcapturecomparemode.enablechannelcomparatorfunction" value="Enabled"/>
@@ -53,6 +67,8 @@
     <property object="TIMER_SETUP_0" propertyId="timer_setup.timer1.timerswitch1:runcontrol" value="Start"/>
     <property object="UART_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="UART_0" propertyId="uart.serialportcontrol.enablereceive" value="Enabled"/>
+    <property object="VREF_0" propertyId="ABPeripheral.included" value="true"/>
+    <property object="VREF_0" propertyId="vref.voltagereferencecontrol.temperaturesensor" value="Enabled"/>
     <property object="WDT_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="WDT_0" propertyId="wdt.watchdogcontrol.wdtenable" value="Disable"/>
   </mode>

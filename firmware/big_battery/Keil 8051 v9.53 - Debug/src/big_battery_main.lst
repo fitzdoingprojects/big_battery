@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 00:28:50 PAGE 1   
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE BIG_BATTERY_MAIN
@@ -31,89 +31,105 @@ line level    source
   17          
   18          
   19          //-----------------------------------------------------------------------------
-  20          // Externs
+  20          // Global CONSTANTS
   21          //-----------------------------------------------------------------------------
-  22          extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
-  23          extern uint8_t RX_BUFFER[UART_BUFFERSIZE];
-  24          extern uint8_t TX_index;
-  25          extern uint8_t TX_size;
-  26          extern uint8_t RX_size;
-  27          extern uint8_t UART_Output_First;
-  28          extern uint8_t TX_Ready;
-  29          extern uint8_t Byte;
-  30          
-  31          
-  32          void uart_write(char * buf);
-  33          void set_pwm0(uint16_t duty);
-  34          
-  35          //-----------------------------------------------------------------------------
-  36          // SiLabs_Startup() Routine
-  37          // ----------------------------------------------------------------------------
-  38          // This function is called immediately after reset, before the initialization
-  39          // code is run in SILABS_STARTUP.A51 (which runs before main() ). This is a
-  40          // useful place to disable the watchdog timer, which is enable by default
-  41          // and may trigger before main() in some instances.
-  42          //-----------------------------------------------------------------------------
-  43          void SiLabs_Startup (void)
-  44          {
-  45   1        // $[SiLabs Startup]
-  46   1        // [SiLabs Startup]$
-  47   1      }
-  48          
-  49          //-----------------------------------------------------------------------------
-  50          // main() Routine
-  51          // ----------------------------------------------------------------------------
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 00:28:50 PAGE 2   
+  22          SI_SBIT(TRICKLE_DIS, SFR_P0, 2);               // P0.2 Trickle Disable
+  23          SI_SBIT(OUTPUT_EN, SFR_P0, 7);               // P0.7 Output Enable
+  24          
+  25          
+  26          //-----------------------------------------------------------------------------
+  27          // Externs
+  28          //-----------------------------------------------------------------------------
+  29          extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
+  30          extern uint8_t RX_BUFFER[UART_BUFFERSIZE];
+  31          extern uint8_t TX_index;
+  32          extern uint8_t TX_size;
+  33          extern uint8_t RX_size;
+  34          extern uint8_t UART_Output_First;
+  35          extern uint8_t TX_Ready;
+  36          extern uint8_t Byte;
+  37          
+  38          void uart_write(char * buf);
+  39          void set_pwm0(uint16_t duty);
+  40          
+  41          //-----------------------------------------------------------------------------
+  42          // SiLabs_Startup() Routine
+  43          // ----------------------------------------------------------------------------
+  44          // This function is called immediately after reset, before the initialization
+  45          // code is run in SILABS_STARTUP.A51 (which runs before main() ). This is a
+  46          // useful place to disable the watchdog timer, which is enable by default
+  47          // and may trigger before main() in some instances.
+  48          //-----------------------------------------------------------------------------
+  49          void SiLabs_Startup (void)
+  50          {
+  51   1        // $[SiLabs Startup]
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 2   
 
-  52          int main (void) {
-  53   1              // Call hardware initialization routine
-  54   1              uint16_t duty = 0;
-  55   1              enter_DefaultMode_from_RESET();
-  56   1      
-  57   1              while(1) {
-  58   2              // $[Generated Run-time code]
-  59   2              // [Generated Run-time code]$
-  60   2                      uart_write("this is a test");
-  61   2                      while(!TX_Ready);
-  62   2                      set_pwm0(duty);
-  63   2                      if(duty < 2048) {
-  64   3                              duty++;
-  65   3                      } else {
-  66   3                              duty = 0;
-  67   3                      }
-  68   2              }
-  69   1      }
-  70          
-  71          
-  72          void uart_write(char * buf) {
-  73   1              TX_Ready = 0;
-  74   1              TX_size = 0;
-  75   1              while((buf[TX_size] != '\n') && (TX_size < UART_BUFFERSIZE)) {
-  76   2                      TX_BUFFER[TX_size] = buf[TX_size];
-  77   2                      TX_size++;
-  78   2              }
-  79   1              SBUF0 = TX_BUFFER[0];
-  80   1      }
-  81          
-  82          void set_pwm0(uint16_t duty) {
-  83   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
-  84   1      
-  85   1         PCA0CPL0 = (duty & 0x00FF);
-  86   1         PCA0CPH0 = (duty & 0xFF00)>>8;
-  87   1      
-  88   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
-  89   1      }
-  90          
+  52   1        // [SiLabs Startup]$
+  53   1      }
+  54          
+  55          //-----------------------------------------------------------------------------
+  56          // main() Routine
+  57          // ----------------------------------------------------------------------------
+  58          int main (void) {
+  59   1              // Call hardware initialization routine
+  60   1              uint16_t duty = 0;
+  61   1              enter_DefaultMode_from_RESET();
+  62   1      
+  63   1              TRICKLE_DIS = 1;
+  64   1              OUTPUT_EN = 1;
+  65   1      
+  66   1              while(1) {
+  67   2              // $[Generated Run-time code]
+  68   2              // [Generated Run-time code]$
+  69   2                      uart_write("this is a test");
+  70   2                      while(!TX_Ready);
+  71   2                      set_pwm0(duty);
+  72   2                      if(duty < 2048) {
+  73   3                              duty++;
+  74   3                      } else {
+  75   3                              duty = 0;
+  76   3                      }
+  77   2                      if(duty % 10 == 0) {
+  78   3                              TRICKLE_DIS = ~TRICKLE_DIS;
+  79   3                              OUTPUT_EN = ~OUTPUT_EN;
+  80   3      
+  81   3                      }
+  82   2              }
+  83   1      }
+  84          
+  85          
+  86          void uart_write(char * buf) {
+  87   1              TX_Ready = 0;
+  88   1              TX_size = 0;
+  89   1              while((buf[TX_size] != '\n') && (TX_size < UART_BUFFERSIZE)) {
+  90   2                      TX_BUFFER[TX_size] = buf[TX_size];
+  91   2                      TX_size++;
+  92   2              }
+  93   1              SBUF0 = TX_BUFFER[0];
+  94   1      }
+  95          
+  96          void set_pwm0(uint16_t duty) {
+  97   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
+  98   1      
+  99   1         PCA0CPL0 = (duty & 0x00FF);
+ 100   1         PCA0CPH0 = (duty & 0xFF00)>>8;
+ 101   1      
+ 102   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
+ 103   1      }
+ 104          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    119    ----
+   CODE SIZE        =    142    ----
    CONSTANT SIZE    =     15    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       5
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 3   
+
    EDATA SIZE       =   ----    ----
    HDATA SIZE       =   ----    ----
    XDATA CONST SIZE =   ----    ----

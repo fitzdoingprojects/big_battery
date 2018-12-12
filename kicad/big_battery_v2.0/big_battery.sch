@@ -2366,4 +2366,8 @@ Wire Wire Line
 Connection ~ 4250 3550
 Wire Wire Line
 	4250 3550 4250 4600
+Text Notes 3900 2900 0    50   ~ 0
+DI/DO and VOLTAGE_PWM/OUTPUT_EN are switched respectively
+Text Notes 5000 3000 0    50   ~ 0
+DI/DO must be on P0.4/ P0.5
 $EndSCHEMATC
