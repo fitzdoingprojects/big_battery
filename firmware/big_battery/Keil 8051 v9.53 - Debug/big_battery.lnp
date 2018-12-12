@@ -1,3 +1,4 @@
+"./lib/efm8bb1/peripheralDrivers/src/uart_0.OBJ",
 "./src/InitDevice.OBJ",
 "./src/Interrupts.OBJ",
 "./src/SILABS_STARTUP.OBJ",

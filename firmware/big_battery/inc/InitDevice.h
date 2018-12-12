@@ -20,9 +20,13 @@ extern void enter_DefaultMode_from_RESET(void);
 extern void WDT_0_enter_DefaultMode_from_RESET(void);
 extern void PORTS_0_enter_DefaultMode_from_RESET(void);
 extern void PBCFG_0_enter_DefaultMode_from_RESET(void);
+extern void ADC_0_enter_DefaultMode_from_RESET(void);
 extern void CLOCK_0_enter_DefaultMode_from_RESET(void);
 extern void TIMER01_0_enter_DefaultMode_from_RESET(void);
 extern void TIMER_SETUP_0_enter_DefaultMode_from_RESET(void);
+extern void PCA_0_enter_DefaultMode_from_RESET(void);
+extern void PCACH_0_enter_DefaultMode_from_RESET(void);
+extern void PCACH_1_enter_DefaultMode_from_RESET(void);
 extern void UART_0_enter_DefaultMode_from_RESET(void);
 extern void INTERRUPT_0_enter_DefaultMode_from_RESET(void);
 // [Config(Per-Module Mode)Transition Prototypes]$

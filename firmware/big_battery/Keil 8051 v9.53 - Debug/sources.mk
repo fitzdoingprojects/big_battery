@@ -13,5 +13,6 @@ OBJS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+lib/efm8bb1/peripheralDrivers/src \
 src \
 

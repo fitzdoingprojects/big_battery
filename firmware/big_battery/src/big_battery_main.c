@@ -30,6 +30,7 @@ extern uint8_t Byte;
 
 
 void uart_write(char * buf);
+void set_pwm0(uint16_t duty);
 
 //-----------------------------------------------------------------------------
 // SiLabs_Startup() Routine
@@ -50,6 +51,7 @@ void SiLabs_Startup (void)
 // ----------------------------------------------------------------------------
 int main (void) {
 	// Call hardware initialization routine
+	uint16_t duty = 0;
 	enter_DefaultMode_from_RESET();
 
 	while(1) {
@@ -57,6 +59,12 @@ int main (void) {
 	// [Generated Run-time code]$
 		uart_write("this is a test");
 		while(!TX_Ready);
+		set_pwm0(duty);
+		if(duty < 2048) {
+			duty++;
+		} else {
+			duty = 0;
+		}
 	}
 }
 
@@ -69,5 +77,14 @@ void uart_write(char * buf) {
 		TX_size++;
 	}
 	SBUF0 = TX_BUFFER[0];
+}
+
+void set_pwm0(uint16_t duty) {
+   PCA0PWM |= 0x80;                    // Target Auto-reload registers
+
+   PCA0CPL0 = (duty & 0x00FF);
+   PCA0CPH0 = (duty & 0xFF00)>>8;
+
+   PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
 }
 
