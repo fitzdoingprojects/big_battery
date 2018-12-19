@@ -103,8 +103,11 @@ int main (void) {
 	TRICKLE_DIS = 1;
 	OUTPUT_EN = 1;
 
-	set_pwm0(2000);
-	//set_pwm1(1000);
+	set_pwm0(0);
+	set_pwm1(0);
+
+	uart_write(DEV_NAME, 1);
+	uart_write("\nSTART\n", 5);
 
 	while(1) {
 		if(RX_recieved && RX_BUFFER[0]) {
@@ -138,12 +141,15 @@ int main (void) {
 				val = (((uint16_t) RX_BUFFER[3]) << 8) & 0xFF00;
 				val |= 0x00FF & RX_BUFFER[4];
 				switch(RX_BUFFER[2]) {
-				case 'V':
+				case 'V': //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
 					set_pwm0(val);
+					uart_write16(val);
 					uart_write("ACK\n", 5);
-					break;
+					break; //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
 				case 'I':
+					val = val >> 6;
 					set_pwm1(val);
+					uart_write16(val);
 					uart_write("ACK\n", 5);
 					break;
 				case 'T':
@@ -191,21 +197,17 @@ void uart_write(char * buf, uint8_t size) {
 }
 
 void set_pwm0(uint16_t duty) {
-	if(duty > (1 << 11)) {
-		duty = (1 << 11);
-	}
+	duty = duty % (1 << 11);
    PCA0PWM |= 0x80;                    // Target Auto-reload registers
 
    PCA0CPL0 = (duty & 0x00FF);
    PCA0CPH0 = (duty & 0xFF00)>>8;
 
-   PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
+   PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers              // Target PCA0CPH/L registers
 }
 
 void set_pwm1(uint16_t duty) {
-	if(duty > (1 << 11)) {
-		duty = (1 << 10);
-	}
+	duty = duty % (1 << 11);
    PCA0PWM |= 0x80;                    // Target Auto-reload registers
 
    PCA0CPL1 = (duty & 0x00FF);
