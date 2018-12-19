@@ -170,7 +170,7 @@ int main (void) {
 					break;
 				}
 			}
-
+			//uart_write(RX_BUFFER, RX_size);
 			RX_recieved = 0;
 			RX_size = 0;
 		}

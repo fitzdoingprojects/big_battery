@@ -2134,7 +2134,7 @@ L big_battery-rescue:R_Small-Device R28
 U 1 1 5C0260A1
 P 3150 2450
 F 0 "R28" H 3091 2404 50  0000 R CNN
-F 1 "10K 1%" H 3091 2495 50  0000 R CNN
+F 1 "1K %1" H 3091 2495 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3150 2450 50  0001 C CNN
 F 3 "~" H 3150 2450 50  0001 C CNN
 	1    3150 2450
@@ -2315,7 +2315,7 @@ L big_battery-rescue:R_Small-Device R31
 U 1 1 5C379522
 P 9200 2800
 F 0 "R31" H 9141 2754 50  0000 R CNN
-F 1 "10K 1%" H 9141 2845 50  0000 R CNN
+F 1 "1K 1%" H 9141 2845 50  0000 R CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 9200 2800 50  0001 C CNN
 F 3 "~" H 9200 2800 50  0001 C CNN
 	1    9200 2800
@@ -2370,4 +2370,44 @@ Text Notes 3900 2900 0    50   ~ 0
 DI/DO and VOLTAGE_PWM/OUTPUT_EN are switched respectively
 Text Notes 5000 3000 0    50   ~ 0
 DI/DO must be on P0.4/ P0.5
+Wire Notes Line
+	8300 3300 8300 3950
+Wire Notes Line
+	8300 3950 9500 3950
+Wire Notes Line
+	9500 3950 9500 3300
+Wire Notes Line
+	9500 3300 8300 3300
+Text Notes 9700 3850 0    50   ~ 0
+LEAVE UNPLACED\n
+Wire Bus Line
+	9200 3250 8000 3250
+Wire Bus Line
+	8000 3250 8000 3550
+Text Notes 8000 3250 0    50   ~ 0
+BODGE WIRE
+Wire Bus Line
+	5500 2450 5500 2600
+Wire Bus Line
+	5500 2600 5200 2600
+Wire Bus Line
+	5200 2600 5200 2650
+Wire Bus Line
+	5200 2750 5200 2700
+Wire Bus Line
+	5200 2700 5600 2700
+Wire Bus Line
+	5600 2700 5600 2550
+Wire Bus Line
+	5150 2450 5150 2800
+Wire Bus Line
+	5150 2800 5700 2800
+Wire Bus Line
+	5700 2800 5700 2650
+Wire Bus Line
+	5050 2550 5050 2900
+Wire Bus Line
+	5050 2900 5800 2900
+Wire Bus Line
+	5800 2900 5800 2750
 $EndSCHEMATC
