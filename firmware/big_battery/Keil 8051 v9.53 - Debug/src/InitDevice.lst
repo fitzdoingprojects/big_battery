@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 1   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE INITDEVICE
@@ -63,7 +63,7 @@ line level    source
   49          
   50          extern void PBCFG_0_enter_DefaultMode_from_RESET(void) {
   51   1              // $[XBR2 - Port I/O Crossbar 2]
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 2   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 2   
 
   52   1              /***********************************************************************
   53   1               - Weak Pullups disabled
@@ -128,7 +128,7 @@ line level    source
  112   1      
  113   1              // $[TH0 - Timer 0 High Byte]
  114   1              // [TH0 - Timer 0 High Byte]$
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 3   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 3   
 
  115   1      
  116   1              // $[TL0 - Timer 0 Low Byte]
@@ -193,7 +193,7 @@ line level    source
  175   1              /***********************************************************************
  176   1               - Disable ADC0 Conversion Complete interrupt
  177   1               - Disable ADC0 Window Comparison interrupt
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 4   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 4   
 
  178   1               - Disable CP0 interrupts
  179   1               - Disable CP1 interrupts
@@ -258,7 +258,7 @@ line level    source
  238   1               - P0.1 pin is configured for analog mode
  239   1               - P0.2 pin is configured for digital mode
  240   1               - P0.3 pin is configured for digital mode
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 5   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 5   
 
  241   1               - P0.4 pin is configured for digital mode
  242   1               - P0.5 pin is configured for digital mode
@@ -323,7 +323,7 @@ line level    source
  301   1              // $[PCA0H - PCA Counter/Timer High Byte]
  302   1              // [PCA0H - PCA Counter/Timer High Byte]$
  303   1      
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 6   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 6   
 
  304   1              // $[PCA0POL - PCA Output Polarity]
  305   1              // [PCA0POL - PCA Output Polarity]$
@@ -351,7 +351,7 @@ line level    source
  327   1              // $[PCA0CPM0 - PCA Channel 0 Capture/Compare Mode]
  328   1              /***********************************************************************
  329   1               - Disable negative edge capture
- 330   1               - Disable CCF0 interrupts
+ 330   1               - Enable a Capture/Compare Flag interrupt request when CCF0 is set
  331   1               - Disable match function
  332   1               - 8 to 11-bit PWM selected
  333   1               - Disable positive edge capture
@@ -359,7 +359,7 @@ line level    source
  335   1               - Enable PWM function
  336   1               - Disable toggle function
  337   1               ***********************************************************************/
- 338   1              PCA0CPM0 = PCA0CPM0_CAPN__DISABLED | PCA0CPM0_ECCF__DISABLED
+ 338   1              PCA0CPM0 = PCA0CPM0_CAPN__DISABLED | PCA0CPM0_ECCF__ENABLED
  339   1                              | PCA0CPM0_MAT__DISABLED | PCA0CPM0_PWM16__8_BIT
  340   1                              | PCA0CPM0_CAPP__DISABLED | PCA0CPM0_ECOM__ENABLED
  341   1                              | PCA0CPM0_PWM__ENABLED | PCA0CPM0_TOG__DISABLED;
@@ -388,7 +388,7 @@ line level    source
  364   1              PCA0PWM &= ~PCA0PWM_ARSEL__BMASK;
  365   1              // [PCA0 Settings Save]$
  366   1      
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 7   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 7   
 
  367   1              // $[PCA0CPM1 - PCA Channel 1 Capture/Compare Mode]
  368   1              /***********************************************************************
@@ -453,7 +453,7 @@ line level    source
  427   1              // $[PCA0CPH2 - PCA Channel 2 Capture Module High Byte]
  428   1              // [PCA0CPH2 - PCA Channel 2 Capture Module High Byte]$
  429   1      
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 8   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 8   
 
  430   1              // $[Auto-reload]
  431   1              // [Auto-reload]$
@@ -472,12 +472,12 @@ line level    source
  444   1      
  445   1              // $[ADC0CF - ADC0 Configuration]
  446   1              /***********************************************************************
- 447   1               - SAR Clock Divider = 0x1E
+ 447   1               - SAR Clock Divider = 0x1F
  448   1               - ADC0 operates in 10-bit or 12-bit mode 
  449   1               - The on-chip PGA gain is 1
  450   1               - Normal Track Mode
  451   1               ***********************************************************************/
- 452   1              ADC0CF = (0x1E << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
+ 452   1              ADC0CF = (0x1F << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
  453   1                              | ADC0CF_ADGN__GAIN_1 | ADC0CF_ADTM__TRACK_NORMAL;
  454   1              // [ADC0CF - ADC0 Configuration]$
  455   1      
@@ -518,7 +518,7 @@ line level    source
  490   1              ADC0CN0 |= ADC0CN0_ADBMEN__BURST_ENABLED;
  491   1              // [ADC0CN0 - ADC0 Control 0]$
  492   1      
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/11/2018 20:48:58 PAGE 9   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        12/18/2018 15:56:28 PAGE 9   
 
  493   1      }
  494          

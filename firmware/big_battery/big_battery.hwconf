@@ -6,7 +6,6 @@
     <property object="ADC_0" propertyId="adc.accumulatorconfiguration.repeatcount" value="64 conversions"/>
     <property object="ADC_0" propertyId="adc.configuration.gaincontrol" value="1x gain"/>
     <property object="ADC_0" propertyId="adc.configuration.resolution" value="12-bit"/>
-    <property object="ADC_0" propertyId="adc.configuration.sarclockdivider" value="30"/>
     <property object="ADC_0" propertyId="adc.control.enableburstmode" value="Enabled"/>
     <property object="CLOCK_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.clocksourcedivider" value="SYSCLK / 1"/>
@@ -39,6 +38,7 @@
     <property object="PBCFG_0" propertyId="pbcfg.settings.disableportioweakpullup" value="Pull-ups disabled"/>
     <property object="PBCFG_0" propertyId="pbcfg.settings.enablecrossbar" value="Enabled"/>
     <property object="PCACH_0" propertyId="ABPeripheral.included" value="true"/>
+    <property object="PCACH_0" propertyId="pcach.pcachannel.capturecompareflaginterrupt" value="Enabled"/>
     <property object="PCACH_0" propertyId="pcach.pcachannelcapturecomparemode.enablechannelcomparatorfunction" value="Enabled"/>
     <property object="PCACH_0" propertyId="pcach.pcachannelcapturecomparemode.enablechannelpulsewidthmodulationmoden" value="Enabled"/>
     <property object="PCACH_0" propertyId="pcach.pcacontrol.channelcapturecomparemode" value="Predefined 8~11-bit pulse modulator"/>

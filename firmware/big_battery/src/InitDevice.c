@@ -327,7 +327,7 @@ extern void PCACH_0_enter_DefaultMode_from_RESET(void) {
 	// $[PCA0CPM0 - PCA Channel 0 Capture/Compare Mode]
 	/***********************************************************************
 	 - Disable negative edge capture
-	 - Disable CCF0 interrupts
+	 - Enable a Capture/Compare Flag interrupt request when CCF0 is set
 	 - Disable match function
 	 - 8 to 11-bit PWM selected
 	 - Disable positive edge capture
@@ -335,7 +335,7 @@ extern void PCACH_0_enter_DefaultMode_from_RESET(void) {
 	 - Enable PWM function
 	 - Disable toggle function
 	 ***********************************************************************/
-	PCA0CPM0 = PCA0CPM0_CAPN__DISABLED | PCA0CPM0_ECCF__DISABLED
+	PCA0CPM0 = PCA0CPM0_CAPN__DISABLED | PCA0CPM0_ECCF__ENABLED
 			| PCA0CPM0_MAT__DISABLED | PCA0CPM0_PWM16__8_BIT
 			| PCA0CPM0_CAPP__DISABLED | PCA0CPM0_ECOM__ENABLED
 			| PCA0CPM0_PWM__ENABLED | PCA0CPM0_TOG__DISABLED;
@@ -444,12 +444,12 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 
 	// $[ADC0CF - ADC0 Configuration]
 	/***********************************************************************
-	 - SAR Clock Divider = 0x1E
+	 - SAR Clock Divider = 0x1F
 	 - ADC0 operates in 10-bit or 12-bit mode 
 	 - The on-chip PGA gain is 1
 	 - Normal Track Mode
 	 ***********************************************************************/
-	ADC0CF = (0x1E << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
+	ADC0CF = (0x1F << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
 			| ADC0CF_ADGN__GAIN_1 | ADC0CF_ADTM__TRACK_NORMAL;
 	// [ADC0CF - ADC0 Configuration]$
 

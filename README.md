@@ -40,3 +40,8 @@ BOARD REVISION:
  * make sure trickle disable is pulled low
  * add some leds for signalling
 
+
+ 
+ HOW FLASH EFM8 MCU:
+ 
+ https://www.silabs.com/community/mcu/8-bit/knowledge-base.entry.html/2015/06/08/how_to_use_efm8_star-8aHu

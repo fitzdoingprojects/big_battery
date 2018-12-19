@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 1   
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 15:56:28 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE BIG_BATTERY_MAIN
@@ -28,108 +28,281 @@ line level    source
   14          // $[Generated Includes]
   15          // [Generated Includes]$
   16          
-  17          
-  18          
+  17          //-----------------------------------------------------------------------------
+  18          // Global CONSTANTS
   19          //-----------------------------------------------------------------------------
-  20          // Global CONSTANTS
-  21          //-----------------------------------------------------------------------------
-  22          SI_SBIT(TRICKLE_DIS, SFR_P0, 2);               // P0.2 Trickle Disable
-  23          SI_SBIT(OUTPUT_EN, SFR_P0, 7);               // P0.7 Output Enable
-  24          
+  20          #define DEV_NAME "1"
+  21          
+  22          
+  23          SI_SBIT(TRICKLE_DIS, SFR_P0, 2);               // P0.2 Trickle Disable
+  24          SI_SBIT(OUTPUT_EN, SFR_P0, 7);               // P0.7 Output Enable
   25          
-  26          //-----------------------------------------------------------------------------
-  27          // Externs
-  28          //-----------------------------------------------------------------------------
-  29          extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
-  30          extern uint8_t RX_BUFFER[UART_BUFFERSIZE];
-  31          extern uint8_t TX_index;
-  32          extern uint8_t TX_size;
-  33          extern uint8_t RX_size;
-  34          extern uint8_t UART_Output_First;
-  35          extern uint8_t TX_Ready;
-  36          extern uint8_t Byte;
-  37          
-  38          void uart_write(char * buf);
-  39          void set_pwm0(uint16_t duty);
-  40          
-  41          //-----------------------------------------------------------------------------
-  42          // SiLabs_Startup() Routine
-  43          // ----------------------------------------------------------------------------
-  44          // This function is called immediately after reset, before the initialization
-  45          // code is run in SILABS_STARTUP.A51 (which runs before main() ). This is a
-  46          // useful place to disable the watchdog timer, which is enable by default
-  47          // and may trigger before main() in some instances.
-  48          //-----------------------------------------------------------------------------
-  49          void SiLabs_Startup (void)
-  50          {
-  51   1        // $[SiLabs Startup]
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 2   
+  26          typedef enum {
+  27              ADC0_POSITIVE_INPUT_P0, //!< ADC0P0 is ADC Positive Input
+  28              ADC0_POSITIVE_INPUT_P1, //!< ADC0P1 is ADC Positive Input
+  29              ADC0_POSITIVE_INPUT_P2, //!< ADC0P2 is ADC Positive Input
+  30              ADC0_POSITIVE_INPUT_P3, //!< ADC0P3 is ADC Positive Input
+  31              ADC0_POSITIVE_INPUT_P4, //!< ADC0P4 is ADC Positive Input
+  32              ADC0_POSITIVE_INPUT_P5, //!< ADC0P5 is ADC Positive Input
+  33              ADC0_POSITIVE_INPUT_P6, //!< ADC0P6 is ADC Positive Input
+  34              ADC0_POSITIVE_INPUT_P7, //!< ADC0P7 is ADC Positive Input
+  35              ADC0_POSITIVE_INPUT_P8, //!< ADC0P8 is ADC Positive Input
+  36              ADC0_POSITIVE_INPUT_P9, //!< ADC0P9 is ADC Positive Input
+  37              ADC0_POSITIVE_INPUT_P10, //!< ADC0P10 is ADC Positive Input
+  38              ADC0_POSITIVE_INPUT_P11, //!< ADC0P11 is ADC Positive Input
+  39              ADC0_POSITIVE_INPUT_P12, //!< ADC0P12 is ADC Positive Input
+  40              ADC0_POSITIVE_INPUT_P13, //!< ADC0P13 is ADC Positive Input
+  41              ADC0_POSITIVE_INPUT_P14, //!< ADC0P14 is ADC Positive Input
+  42              ADC0_POSITIVE_INPUT_P15, //!< ADC0P15 is ADC Positive Input
+  43              ADC0_POSITIVE_INPUT_TEMP, //!< Internal Temperature Sensor is ADC Positive Input
+  44              ADC0_POSITIVE_INPUT_LDO_OUT, //!< Internal 1.8 V LDO Output is ADC Positive Input
+  45              ADC0_POSITIVE_INPUT_VDD, //!< VDD Supply Pin is ADC Positive Input
+  46              ADC0_POSITIVE_INPUT_GND, //!< GND Supply Pin is ADC Positive Input
+  47              ADC0_POSITIVE_INPUT_NONE = 31, //!< ADC Positive Input is disconnected
+  48          }ADC0_PositiveInput_t;
+  49          
+  50          #define VOLTAGE_ADC ADC0_POSITIVE_INPUT_P0
+  51          #define CURRENT_ADC ADC0_POSITIVE_INPUT_P1
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 15:56:28 PAGE 2   
 
-  52   1        // [SiLabs Startup]$
-  53   1      }
-  54          
-  55          //-----------------------------------------------------------------------------
-  56          // main() Routine
-  57          // ----------------------------------------------------------------------------
-  58          int main (void) {
-  59   1              // Call hardware initialization routine
-  60   1              uint16_t duty = 0;
-  61   1              enter_DefaultMode_from_RESET();
-  62   1      
-  63   1              TRICKLE_DIS = 1;
-  64   1              OUTPUT_EN = 1;
-  65   1      
-  66   1              while(1) {
-  67   2              // $[Generated Run-time code]
-  68   2              // [Generated Run-time code]$
-  69   2                      uart_write("this is a test");
-  70   2                      while(!TX_Ready);
-  71   2                      set_pwm0(duty);
-  72   2                      if(duty < 2048) {
-  73   3                              duty++;
-  74   3                      } else {
-  75   3                              duty = 0;
-  76   3                      }
-  77   2                      if(duty % 10 == 0) {
-  78   3                              TRICKLE_DIS = ~TRICKLE_DIS;
-  79   3                              OUTPUT_EN = ~OUTPUT_EN;
-  80   3      
-  81   3                      }
-  82   2              }
-  83   1      }
-  84          
-  85          
-  86          void uart_write(char * buf) {
-  87   1              TX_Ready = 0;
-  88   1              TX_size = 0;
-  89   1              while((buf[TX_size] != '\n') && (TX_size < UART_BUFFERSIZE)) {
-  90   2                      TX_BUFFER[TX_size] = buf[TX_size];
-  91   2                      TX_size++;
-  92   2              }
-  93   1              SBUF0 = TX_BUFFER[0];
-  94   1      }
-  95          
-  96          void set_pwm0(uint16_t duty) {
-  97   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
-  98   1      
-  99   1         PCA0CPL0 = (duty & 0x00FF);
- 100   1         PCA0CPH0 = (duty & 0xFF00)>>8;
- 101   1      
- 102   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
- 103   1      }
- 104          
+  52          #define TEMP_ADC ADC0_POSITIVE_INPUT_TEMP
+  53          
+  54          //-----------------------------------------------------------------------------
+  55          // Externs
+  56          //-----------------------------------------------------------------------------
+  57          extern uint8_t TX_BUFFER[UART_BUFFERSIZE];
+  58          extern uint8_t RX_BUFFER[UART_BUFFERSIZE];
+  59          extern uint8_t TX_index;
+  60          extern uint8_t TX_size;
+  61          extern uint8_t RX_size;
+  62          extern uint8_t RX_recieved;
+  63          extern uint8_t UART_Output_First;
+  64          extern uint8_t TX_Ready;
+  65          extern uint8_t Byte;
+  66          
+  67          void uart_write(char * buf, uint8_t size);
+  68          void uart_write16(uint16_t val);
+  69          void set_pwm0(uint16_t duty);
+  70          void set_pwm1(uint16_t duty);
+  71          uint16_t poll_adc(uint16_t channel);
+  72          
+  73          uint16_t ADC0_getResult(void);
+  74          bool ADC0_isConversionComplete(void);
+  75          void ADC0_startConversion(void);
+  76          void ADC0_setPositiveInput(ADC0_PositiveInput_t input);
+  77          
+  78          
+  79          
+  80          
+  81          //-----------------------------------------------------------------------------
+  82          // SiLabs_Startup() Routine
+  83          // ----------------------------------------------------------------------------
+  84          // This function is called immediately after reset, before the initialization
+  85          // code is run in SILABS_STARTUP.A51 (which runs before main() ). This is a
+  86          // useful place to disable the watchdog timer, which is enable by default
+  87          // and may trigger before main() in some instances.
+  88          //-----------------------------------------------------------------------------
+  89          void SiLabs_Startup (void)
+  90          {
+  91   1        // $[SiLabs Startup]
+  92   1        // [SiLabs Startup]$
+  93   1      }
+  94          
+  95          //-----------------------------------------------------------------------------
+  96          // main() Routine
+  97          // ----------------------------------------------------------------------------
+  98          int main (void) {
+  99   1              // Call hardware initialization routine
+ 100   1              uint16_t val = 0;
+ 101   1              enter_DefaultMode_from_RESET();
+ 102   1      
+ 103   1              TRICKLE_DIS = 1;
+ 104   1              OUTPUT_EN = 1;
+ 105   1      
+ 106   1              set_pwm0(2000);
+ 107   1              //set_pwm1(1000);
+ 108   1      
+ 109   1              while(1) {
+ 110   2                      if(RX_recieved && RX_BUFFER[0]) {
+ 111   3      
+ 112   3                              if(RX_size == 4 && RX_BUFFER[1] == 'R' ) {
+ 113   4      
+ 114   4                                      uart_write(DEV_NAME, 1);
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 15:56:28 PAGE 3   
+
+ 115   4      
+ 116   4                                      switch(RX_BUFFER[2]) {
+ 117   5                                      case 'V':
+ 118   5                                              uart_write("V", 1);
+ 119   5                                              uart_write16(poll_adc(VOLTAGE_ADC));
+ 120   5                                              uart_write("\nACK\n", 5);
+ 121   5                                              break;
+ 122   5                                      case 'I':
+ 123   5                                              uart_write("I", 1);
+ 124   5                                              uart_write16(poll_adc(CURRENT_ADC));
+ 125   5                                              uart_write("\nACK\n", 5);
+ 126   5                                              break;
+ 127   5                                      case 'T':
+ 128   5                                              uart_write("T", 1);
+ 129   5                                              uart_write16(poll_adc(TEMP_ADC));
+ 130   5                                              uart_write("\nACK\n", 5);
+ 131   5                                              break;
+ 132   5                                      }
+ 133   4                              }
+ 134   3                              if(RX_size == 6 && RX_BUFFER[1] == 'T' ) {
+ 135   4      
+ 136   4                                      uart_write(DEV_NAME, 1);
+ 137   4      
+ 138   4                                      val = (((uint16_t) RX_BUFFER[3]) << 8) & 0xFF00;
+ 139   4                                      val |= 0x00FF & RX_BUFFER[4];
+ 140   4                                      switch(RX_BUFFER[2]) {
+ 141   5                                      case 'V':
+ 142   5                                              set_pwm0(val);
+ 143   5                                              uart_write("ACK\n", 5);
+ 144   5                                              break;
+ 145   5                                      case 'I':
+ 146   5                                              set_pwm1(val);
+ 147   5                                              uart_write("ACK\n", 5);
+ 148   5                                              break;
+ 149   5                                      case 'T':
+ 150   5                                              if(val == 0) {
+ 151   6                                                      TRICKLE_DIS = 0;
+ 152   6                                              } else {
+ 153   6                                                      TRICKLE_DIS = 1;
+ 154   6                                              }
+ 155   5                                              uart_write("ACK\n", 5);
+ 156   5                                              break;
+ 157   5                                      case 'E':
+ 158   5                                              if(val == 0) {
+ 159   6                                                      OUTPUT_EN = 0;
+ 160   6                                              } else {
+ 161   6                                                      OUTPUT_EN = 1;
+ 162   6                                              }
+ 163   5                                              uart_write("ACK\n", 5);
+ 164   5                                              break;
+ 165   5                                      }
+ 166   4                              }
+ 167   3      
+ 168   3                              RX_recieved = 0;
+ 169   3                              RX_size = 0;
+ 170   3                      }
+ 171   2              }
+ 172   1      }
+ 173          
+ 174          void uart_write16(uint16_t val) {
+ 175   1              TX_Ready = 0;
+ 176   1              TX_size = 2;
+ 177   1              TX_BUFFER[1] = (uint8_t) (val & 0x00FF);
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 15:56:28 PAGE 4   
+
+ 178   1              SBUF0 = (uint8_t) (val >> 8) & 0x00FF;
+ 179   1              while(!TX_Ready);
+ 180   1      }
+ 181          
+ 182          void uart_write(char * buf, uint8_t size) {
+ 183   1              TX_Ready = 0;
+ 184   1              TX_size = 0;
+ 185   1              while((TX_size < size) && (TX_size < UART_BUFFERSIZE)) {
+ 186   2                      TX_BUFFER[TX_size] = buf[TX_size];
+ 187   2                      TX_size++;
+ 188   2              }
+ 189   1              SBUF0 = TX_BUFFER[0];
+ 190   1              while(!TX_Ready);
+ 191   1      }
+ 192          
+ 193          void set_pwm0(uint16_t duty) {
+ 194   1              if(duty > (1 << 11)) {
+ 195   2                      duty = (1 << 11);
+ 196   2              }
+ 197   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
+ 198   1      
+ 199   1         PCA0CPL0 = (duty & 0x00FF);
+ 200   1         PCA0CPH0 = (duty & 0xFF00)>>8;
+ 201   1      
+ 202   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
+ 203   1      }
+ 204          
+ 205          void set_pwm1(uint16_t duty) {
+ 206   1              if(duty > (1 << 11)) {
+ 207   2                      duty = (1 << 10);
+ 208   2              }
+ 209   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
+ 210   1      
+ 211   1         PCA0CPL1 = (duty & 0x00FF);
+ 212   1         PCA0CPH1 = (duty & 0xFF00)>>8;
+ 213   1      
+ 214   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
+ 215   1      }
+ 216          
+ 217          
+ 218          void ADC0_setPositiveInput(ADC0_PositiveInput_t input)
+ 219          {
+ 220   1              // Turn on the temp sensor if it is the input
+ 221   1        if (input == ADC0_POSITIVE_INPUT_TEMP)
+ 222   1        {
+ 223   2          REF0CN |= 0x04;
+ 224   2        }
+ 225   1        else
+ 226   1        {
+ 227   2          REF0CN &= 0xFB;
+ 228   2        }
+ 229   1      
+ 230   1      
+ 231   1              ADC0MX = input;
+ 232   1      }
+ 233          
+ 234          void ADC0_startConversion(void)
+ 235          {
+ 236   1              uint8_t ADCM_save;
+ 237   1      
+ 238   1              // Save the conversion source and set to ADBUSY
+ 239   1              ADCM_save = ADC0CN0 & ADC0CN0_ADCM__FMASK;
+ 240   1              ADC0CN0 = (ADC0CN0 & ~ADC0CN0_ADCM__FMASK) | ADC0CN0_ADCM__ADBUSY;
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 15:56:28 PAGE 5   
+
+ 241   1      
+ 242   1              // Clear the conversion complete flag
+ 243   1              ADC0CN0_ADINT = 0;
+ 244   1      
+ 245   1              // Start a conversion by setting ADBUSY
+ 246   1              ADC0CN0_ADBUSY = 1;
+ 247   1      
+ 248   1              // Restore the conversion source
+ 249   1              ADC0CN0 |= ADCM_save;
+ 250   1      }
+ 251          
+ 252          bool ADC0_isConversionComplete(void)
+ 253          {
+ 254   1              bool conversionComplete;
+ 255   1              conversionComplete = ADC0CN0_ADINT;
+ 256   1              return conversionComplete;
+ 257   1      }
+ 258          
+ 259          uint16_t ADC0_getResult(void)
+ 260          {
+ 261   1              uint16_t result;
+ 262   1              result = ADC0;
+ 263   1              return result;
+ 264   1      }
+ 265          
+ 266          //blocking
+ 267          uint16_t poll_adc(uint16_t channel) {
+ 268   1              ADC0_setPositiveInput(channel);
+ 269   1              ADC0_startConversion();
+ 270   1              while(!ADC0_isConversionComplete());
+ 271   1              return ADC0_getResult();
+ 272   1      }
+ 273          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    142    ----
-   CONSTANT SIZE    =     15    ----
+   CODE SIZE        =    416    ----
+   CONSTANT SIZE    =     19    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       5
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =   ----    ----
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/11/2018 20:48:59 PAGE 3   
-
+   BIT SIZE         =   ----       1
    EDATA SIZE       =   ----    ----
    HDATA SIZE       =   ----    ----
    XDATA CONST SIZE =   ----    ----
