@@ -120,19 +120,21 @@ int main (void) {
 				case 'V':
 					uart_write("V", 1);
 					uart_write16(poll_adc(VOLTAGE_ADC));
-					uart_write("\nACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				case 'I':
 					uart_write("I", 1);
 					uart_write16(poll_adc(CURRENT_ADC));
-					uart_write("\nACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				case 'T':
 					uart_write("T", 1);
 					uart_write16(poll_adc(TEMP_ADC));
-					uart_write("\nACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				}
+				RX_recieved = 0;
+				RX_size = 0;
 			}
 			if(RX_size == 6 && RX_BUFFER[1] == 'T' ) {
 
@@ -144,13 +146,13 @@ int main (void) {
 				case 'V': //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
 					set_pwm0(val);
 					uart_write16(val);
-					uart_write("ACK\n", 5);
+					uart_write("ACK", 5);
 					break; //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
 				case 'I':
 					val = val >> 6;
 					set_pwm1(val);
 					uart_write16(val);
-					uart_write("ACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				case 'T':
 					if(val == 0) {
@@ -158,7 +160,7 @@ int main (void) {
 					} else {
 						TRICKLE_DIS = 1;
 					}
-					uart_write("ACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				case 'E':
 					if(val == 0) {
@@ -166,14 +168,16 @@ int main (void) {
 					} else {
 						OUTPUT_EN = 1;
 					}
-					uart_write("ACK\n", 5);
+					uart_write("ACK", 5);
 					break;
 				}
+				RX_recieved = 0;
+				RX_size = 0;
 			}
 			//uart_write(RX_BUFFER, RX_size);
-			RX_recieved = 0;
-			RX_size = 0;
+
 		}
+
 	}
 }
 

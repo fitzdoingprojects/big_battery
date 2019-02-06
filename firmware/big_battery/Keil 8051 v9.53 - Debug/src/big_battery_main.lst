@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 21:39:41 PAGE 1   
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  02/05/2019 18:03:19 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE BIG_BATTERY_MAIN
@@ -63,7 +63,7 @@ line level    source
   49          
   50          #define VOLTAGE_ADC ADC0_POSITIVE_INPUT_P0
   51          #define CURRENT_ADC ADC0_POSITIVE_INPUT_P1
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 21:39:41 PAGE 2   
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  02/05/2019 18:03:19 PAGE 2   
 
   52          #define TEMP_ADC ADC0_POSITIVE_INPUT_TEMP
   53          
@@ -128,7 +128,7 @@ line level    source
  112   1              while(1) {
  113   2                      if(RX_recieved && RX_BUFFER[0]) {
  114   3      
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 21:39:41 PAGE 3   
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  02/05/2019 18:03:19 PAGE 3   
 
  115   3                              if(RX_size == 4 && RX_BUFFER[1] == 'R' ) {
  116   4      
@@ -138,169 +138,173 @@ line level    source
  120   5                                      case 'V':
  121   5                                              uart_write("V", 1);
  122   5                                              uart_write16(poll_adc(VOLTAGE_ADC));
- 123   5                                              uart_write("\nACK\n", 5);
+ 123   5                                              uart_write("ACK", 5);
  124   5                                              break;
  125   5                                      case 'I':
  126   5                                              uart_write("I", 1);
  127   5                                              uart_write16(poll_adc(CURRENT_ADC));
- 128   5                                              uart_write("\nACK\n", 5);
+ 128   5                                              uart_write("ACK", 5);
  129   5                                              break;
  130   5                                      case 'T':
  131   5                                              uart_write("T", 1);
  132   5                                              uart_write16(poll_adc(TEMP_ADC));
- 133   5                                              uart_write("\nACK\n", 5);
+ 133   5                                              uart_write("ACK", 5);
  134   5                                              break;
  135   5                                      }
- 136   4                              }
- 137   3                              if(RX_size == 6 && RX_BUFFER[1] == 'T' ) {
- 138   4      
- 139   4                                      uart_write(DEV_NAME, 1);
+ 136   4                                      RX_recieved = 0;
+ 137   4                                      RX_size = 0;
+ 138   4                              }
+ 139   3                              if(RX_size == 6 && RX_BUFFER[1] == 'T' ) {
  140   4      
- 141   4                                      val = (((uint16_t) RX_BUFFER[3]) << 8) & 0xFF00;
- 142   4                                      val |= 0x00FF & RX_BUFFER[4];
- 143   4                                      switch(RX_BUFFER[2]) {
- 144   5                                      case 'V': //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
- 145   5                                              set_pwm0(val);
- 146   5                                              uart_write16(val);
- 147   5                                              uart_write("ACK\n", 5);
- 148   5                                              break; //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
- 149   5                                      case 'I':
- 150   5                                              val = val >> 6;
- 151   5                                              set_pwm1(val);
- 152   5                                              uart_write16(val);
- 153   5                                              uart_write("ACK\n", 5);
- 154   5                                              break;
- 155   5                                      case 'T':
- 156   5                                              if(val == 0) {
- 157   6                                                      TRICKLE_DIS = 0;
- 158   6                                              } else {
- 159   6                                                      TRICKLE_DIS = 1;
- 160   6                                              }
- 161   5                                              uart_write("ACK\n", 5);
- 162   5                                              break;
- 163   5                                      case 'E':
- 164   5                                              if(val == 0) {
- 165   6                                                      OUTPUT_EN = 0;
- 166   6                                              } else {
- 167   6                                                      OUTPUT_EN = 1;
- 168   6                                              }
- 169   5                                              uart_write("ACK\n", 5);
- 170   5                                              break;
- 171   5                                      }
- 172   4                              }
- 173   3                              //uart_write(RX_BUFFER, RX_size);
- 174   3                              RX_recieved = 0;
- 175   3                              RX_size = 0;
- 176   3                      }
- 177   2              }
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 21:39:41 PAGE 4   
+ 141   4                                      uart_write(DEV_NAME, 1);
+ 142   4      
+ 143   4                                      val = (((uint16_t) RX_BUFFER[3]) << 8) & 0xFF00;
+ 144   4                                      val |= 0x00FF & RX_BUFFER[4];
+ 145   4                                      switch(RX_BUFFER[2]) {
+ 146   5                                      case 'V': //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
+ 147   5                                              set_pwm0(val);
+ 148   5                                              uart_write16(val);
+ 149   5                                              uart_write("ACK", 5);
+ 150   5                                              break; //NOTE: BE CAREFUL OF OVERFLOW, PWM is 11bits
+ 151   5                                      case 'I':
+ 152   5                                              val = val >> 6;
+ 153   5                                              set_pwm1(val);
+ 154   5                                              uart_write16(val);
+ 155   5                                              uart_write("ACK", 5);
+ 156   5                                              break;
+ 157   5                                      case 'T':
+ 158   5                                              if(val == 0) {
+ 159   6                                                      TRICKLE_DIS = 0;
+ 160   6                                              } else {
+ 161   6                                                      TRICKLE_DIS = 1;
+ 162   6                                              }
+ 163   5                                              uart_write("ACK", 5);
+ 164   5                                              break;
+ 165   5                                      case 'E':
+ 166   5                                              if(val == 0) {
+ 167   6                                                      OUTPUT_EN = 0;
+ 168   6                                              } else {
+ 169   6                                                      OUTPUT_EN = 1;
+ 170   6                                              }
+ 171   5                                              uart_write("ACK", 5);
+ 172   5                                              break;
+ 173   5                                      }
+ 174   4                                      RX_recieved = 0;
+ 175   4                                      RX_size = 0;
+ 176   4                              }
+ 177   3                              //uart_write(RX_BUFFER, RX_size);
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  02/05/2019 18:03:19 PAGE 4   
 
- 178   1      }
- 179          
- 180          void uart_write16(uint16_t val) {
- 181   1              TX_Ready = 0;
- 182   1              TX_size = 2;
- 183   1              TX_BUFFER[1] = (uint8_t) (val & 0x00FF);
- 184   1              SBUF0 = (uint8_t) (val >> 8) & 0x00FF;
- 185   1              while(!TX_Ready);
- 186   1      }
- 187          
- 188          void uart_write(char * buf, uint8_t size) {
- 189   1              TX_Ready = 0;
- 190   1              TX_size = 0;
- 191   1              while((TX_size < size) && (TX_size < UART_BUFFERSIZE)) {
- 192   2                      TX_BUFFER[TX_size] = buf[TX_size];
- 193   2                      TX_size++;
- 194   2              }
- 195   1              SBUF0 = TX_BUFFER[0];
- 196   1              while(!TX_Ready);
- 197   1      }
- 198          
- 199          void set_pwm0(uint16_t duty) {
- 200   1              duty = duty % (1 << 11);
- 201   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
- 202   1      
- 203   1         PCA0CPL0 = (duty & 0x00FF);
- 204   1         PCA0CPH0 = (duty & 0xFF00)>>8;
- 205   1      
- 206   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers              // Target PCA0CPH/L regi
+ 178   3      
+ 179   3                      }
+ 180   2      
+ 181   2              }
+ 182   1      }
+ 183          
+ 184          void uart_write16(uint16_t val) {
+ 185   1              TX_Ready = 0;
+ 186   1              TX_size = 2;
+ 187   1              TX_BUFFER[1] = (uint8_t) (val & 0x00FF);
+ 188   1              SBUF0 = (uint8_t) (val >> 8) & 0x00FF;
+ 189   1              while(!TX_Ready);
+ 190   1      }
+ 191          
+ 192          void uart_write(char * buf, uint8_t size) {
+ 193   1              TX_Ready = 0;
+ 194   1              TX_size = 0;
+ 195   1              while((TX_size < size) && (TX_size < UART_BUFFERSIZE)) {
+ 196   2                      TX_BUFFER[TX_size] = buf[TX_size];
+ 197   2                      TX_size++;
+ 198   2              }
+ 199   1              SBUF0 = TX_BUFFER[0];
+ 200   1              while(!TX_Ready);
+ 201   1      }
+ 202          
+ 203          void set_pwm0(uint16_t duty) {
+ 204   1              duty = duty % (1 << 11);
+ 205   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
+ 206   1      
+ 207   1         PCA0CPL0 = (duty & 0x00FF);
+ 208   1         PCA0CPH0 = (duty & 0xFF00)>>8;
+ 209   1      
+ 210   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers              // Target PCA0CPH/L regi
              -sters
- 207   1      }
- 208          
- 209          void set_pwm1(uint16_t duty) {
- 210   1              duty = duty % (1 << 11);
- 211   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
- 212   1      
- 213   1         PCA0CPL1 = (duty & 0x00FF);
- 214   1         PCA0CPH1 = (duty & 0xFF00)>>8;
- 215   1      
- 216   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
- 217   1      }
- 218          
- 219          
- 220          void ADC0_setPositiveInput(ADC0_PositiveInput_t input)
- 221          {
- 222   1              // Turn on the temp sensor if it is the input
- 223   1        if (input == ADC0_POSITIVE_INPUT_TEMP)
- 224   1        {
- 225   2          REF0CN |= 0x04;
- 226   2        }
- 227   1        else
+ 211   1      }
+ 212          
+ 213          void set_pwm1(uint16_t duty) {
+ 214   1              duty = duty % (1 << 11);
+ 215   1         PCA0PWM |= 0x80;                    // Target Auto-reload registers
+ 216   1      
+ 217   1         PCA0CPL1 = (duty & 0x00FF);
+ 218   1         PCA0CPH1 = (duty & 0xFF00)>>8;
+ 219   1      
+ 220   1         PCA0PWM &= ~0x80;                   // Target PCA0CPH/L registers
+ 221   1      }
+ 222          
+ 223          
+ 224          void ADC0_setPositiveInput(ADC0_PositiveInput_t input)
+ 225          {
+ 226   1              // Turn on the temp sensor if it is the input
+ 227   1        if (input == ADC0_POSITIVE_INPUT_TEMP)
  228   1        {
- 229   2          REF0CN &= 0xFB;
+ 229   2          REF0CN |= 0x04;
  230   2        }
- 231   1      
- 232   1      
- 233   1              ADC0MX = input;
- 234   1      }
- 235          
- 236          void ADC0_startConversion(void)
- 237          {
- 238   1              uint8_t ADCM_save;
- 239   1      
-C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  12/18/2018 21:39:41 PAGE 5   
+ 231   1        else
+ 232   1        {
+ 233   2          REF0CN &= 0xFB;
+ 234   2        }
+ 235   1      
+ 236   1      
+ 237   1              ADC0MX = input;
+ 238   1      }
+ 239          
+C51 COMPILER V9.53.0.0   BIG_BATTERY_MAIN                                                  02/05/2019 18:03:19 PAGE 5   
 
- 240   1              // Save the conversion source and set to ADBUSY
- 241   1              ADCM_save = ADC0CN0 & ADC0CN0_ADCM__FMASK;
- 242   1              ADC0CN0 = (ADC0CN0 & ~ADC0CN0_ADCM__FMASK) | ADC0CN0_ADCM__ADBUSY;
+ 240          void ADC0_startConversion(void)
+ 241          {
+ 242   1              uint8_t ADCM_save;
  243   1      
- 244   1              // Clear the conversion complete flag
- 245   1              ADC0CN0_ADINT = 0;
- 246   1      
- 247   1              // Start a conversion by setting ADBUSY
- 248   1              ADC0CN0_ADBUSY = 1;
- 249   1      
- 250   1              // Restore the conversion source
- 251   1              ADC0CN0 |= ADCM_save;
- 252   1      }
- 253          
- 254          bool ADC0_isConversionComplete(void)
- 255          {
- 256   1              bool conversionComplete;
- 257   1              conversionComplete = ADC0CN0_ADINT;
- 258   1              return conversionComplete;
- 259   1      }
- 260          
- 261          uint16_t ADC0_getResult(void)
- 262          {
- 263   1              uint16_t result;
- 264   1              result = ADC0;
- 265   1              return result;
- 266   1      }
- 267          
- 268          //blocking
- 269          uint16_t poll_adc(uint16_t channel) {
- 270   1              ADC0_setPositiveInput(channel);
- 271   1              ADC0_startConversion();
- 272   1              while(!ADC0_isConversionComplete());
- 273   1              return ADC0_getResult();
- 274   1      }
- 275          
+ 244   1              // Save the conversion source and set to ADBUSY
+ 245   1              ADCM_save = ADC0CN0 & ADC0CN0_ADCM__FMASK;
+ 246   1              ADC0CN0 = (ADC0CN0 & ~ADC0CN0_ADCM__FMASK) | ADC0CN0_ADCM__ADBUSY;
+ 247   1      
+ 248   1              // Clear the conversion complete flag
+ 249   1              ADC0CN0_ADINT = 0;
+ 250   1      
+ 251   1              // Start a conversion by setting ADBUSY
+ 252   1              ADC0CN0_ADBUSY = 1;
+ 253   1      
+ 254   1              // Restore the conversion source
+ 255   1              ADC0CN0 |= ADCM_save;
+ 256   1      }
+ 257          
+ 258          bool ADC0_isConversionComplete(void)
+ 259          {
+ 260   1              bool conversionComplete;
+ 261   1              conversionComplete = ADC0CN0_ADINT;
+ 262   1              return conversionComplete;
+ 263   1      }
+ 264          
+ 265          uint16_t ADC0_getResult(void)
+ 266          {
+ 267   1              uint16_t result;
+ 268   1              result = ADC0;
+ 269   1              return result;
+ 270   1      }
+ 271          
+ 272          //blocking
+ 273          uint16_t poll_adc(uint16_t channel) {
+ 274   1              ADC0_setPositiveInput(channel);
+ 275   1              ADC0_startConversion();
+ 276   1              while(!ADC0_isConversionComplete());
+ 277   1              return ADC0_getResult();
+ 278   1      }
+ 279          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    436    ----
-   CONSTANT SIZE    =     27    ----
+   CODE SIZE        =    441    ----
+   CONSTANT SIZE    =     20    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       5

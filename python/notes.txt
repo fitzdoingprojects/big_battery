@@ -1,0 +1,36 @@
+ * use QT Designer to design user interface and export .ui file
+ * use pyuic5 command to generate python code (e.g  'pyuic5 -x test1.ui -o test1.py')
+ * modify python code with to interact with ui events
+ 
+RESOURCES:
+doc.qt.io/qt-5/designer-quick-start.html
+http://www.science.smith.edu/dftwiki/index.php/PyQt5_Tutorial:_A_Window_Application_with_File_IO
+
+
+        
+        if (self.threadPeriod == 0):
+
+            self.vadclineEdit.setText(str(100))
+            self.vadclcdNumber.display(100)
+
+            self.iadclineEdit.setText(str(120))
+            self.iadclcdNumber.display(120)
+
+            self.tadclineEdit.setText(str(140))
+            self.tadclcdNumber.display(140)
+            
+        
+        
+        
+        
+        
+        
+        
+        try:
+            self.ser.write(command)
+            time.sleep(2)  
+            readOut = self.ser.read(100)
+        except:
+            readOut = 'NACK'
+            pass
+        self.comHistory.appendPlainText(readOut)

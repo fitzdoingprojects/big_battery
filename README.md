@@ -45,3 +45,4 @@ BOARD REVISION:
  HOW FLASH EFM8 MCU:
  
  https://www.silabs.com/community/mcu/8-bit/knowledge-base.entry.html/2015/06/08/how_to_use_efm8_star-8aHu
+ https://www.allaboutcircuits.com/projects/custom-pcb-design-with-an-efm8-microcontroller/
