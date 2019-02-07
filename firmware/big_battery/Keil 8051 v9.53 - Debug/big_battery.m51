@@ -1,4 +1,4 @@
-LX51 LINKER/LOCATER V4.66.30.0                                                          02/05/2019  20:23:29  PAGE 1
+LX51 LINKER/LOCATER V4.66.30.0                                                          02/06/2019  17:42:49  PAGE 1
 
 
 LX51 LINKER/LOCATER V4.66.30.0, INVOKED BY:
@@ -64,7 +64,7 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 000023H   000025H   000003H   BYTE   OFFS..   CODE           ?INTERRUPTS?00023
 000026H   000052H   00002DH   BYTE   UNIT     CODE           ?C?LIB_CODE
 000053H   000059H   000007H   BYTE   UNIT     CODE           ?PR?WDT_0_ENTER_DEFAULTMODE_FROM_RESET?INITDEVICE
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 2
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 2
 
 
 00005AH   00005AH   000001H   BYTE   UNIT     CODE           ?PR?PCA0_ISR?INTERRUPTS
@@ -129,7 +129,7 @@ MAIN/BIG_BATTERY_MAIN                         ----- -----  0008H 0009H
   +--> _UART_WRITE/BIG_BATTERY_MAIN
   +--> ?CO?BIG_BATTERY_MAIN
   +--> _POLL_ADC/BIG_BATTERY_MAIN
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 3
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 3
 
 
   +--> _UART_WRITE16/BIG_BATTERY_MAIN
@@ -194,7 +194,7 @@ _SET_PWM1/BIG_BATTERY_MAIN                    ----- -----  ----- -----
 
 _UART_WRITE/BIG_BATTERY_MAIN                  ----- -----  000AH 000CH
   +--> ?CO?BIG_BATTERY_MAIN
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 4
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 4
 
 
 
@@ -259,7 +259,7 @@ PUBLIC SYMBOLS OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
 *SFR* 000000E8H.1 DATA     BIT       ADC0CN0_ADCM1
 *SFR* 000000E8H.2 DATA     BIT       ADC0CN0_ADCM2
 *SFR* 000000E8H.7 DATA     BIT       ADC0CN0_ADEN
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 5
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 5
 
 
 *SFR* 000000E8H.5 DATA     BIT       ADC0CN0_ADINT
@@ -324,7 +324,7 @@ PUBLIC SYMBOLS OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
 *SFR* 000000A8H.2 DATA     BIT       IE_EX1
       010003BDH   CODE     ---       INTERRUPT_0_enter_DefaultMode_from_RESET
 *SFR* 000000B8H   DATA     BYTE      IP
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 6
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 6
 
 
 *SFR* 000000B8H.4 DATA     BIT       IP_PS0
@@ -389,7 +389,7 @@ PUBLIC SYMBOLS OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
 *SFR* 000000ECH   DATA     BYTE      PCA0CPH2
 *SFR* 000000FBH   DATA     BYTE      PCA0CPL0
 *SFR* 000000E9H   DATA     BYTE      PCA0CPL1
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 7
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 7
 
 
 *SFR* 000000EBH   DATA     BYTE      PCA0CPL2
@@ -454,7 +454,7 @@ PUBLIC SYMBOLS OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
 *SFR* 000000A1H   DATA     BYTE      SPI0CFG
 *SFR* 000000A2H   DATA     BYTE      SPI0CKR
 *SFR* 000000F8H   DATA     BYTE      SPI0CN0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 8
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 8
 
 
 *SFR* 000000F8H.5 DATA     BIT       SPI0CN0_MODF
@@ -519,7 +519,7 @@ PUBLIC SYMBOLS OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
 *SFR* 000000E1H   DATA     BYTE      XBR0
 *SFR* 000000E2H   DATA     BYTE      XBR1
 *SFR* 000000E3H   DATA     BYTE      XBR2
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 9
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 9
 
 
 
@@ -584,7 +584,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000F0H.2 SFRSYM    DATA     BIT       B_B2
       000000FBH   SFRSYM    DATA     BYTE      PCA0CPL0
       000000F0H.3 SFRSYM    DATA     BIT       B_B3
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 10
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 10
 
 
       000000D9H   SFRSYM    DATA     BYTE      PCA0MD
@@ -649,7 +649,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000CFH   SFRSYM    DATA     BYTE      CRC0FLIP
       000000D0H   SFRSYM    DATA     BIT       PSW_PARITY
       000000A8H.4 SFRSYM    DATA     BIT       IE_ES0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 11
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 11
 
 
       0000009FH   SFRSYM    DATA     BYTE      CMP0MX
@@ -714,7 +714,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000080H.3 SFRSYM    DATA     BIT       P0_B3
       000000C0H   SFRSYM    DATA     BYTE      SMB0CN0
       00000090H.3 SFRSYM    DATA     BIT       P1_B3
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 12
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 12
 
 
       00000080H.4 SFRSYM    DATA     BIT       P0_B4
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000A8H.7 SFRSYM    DATA     BIT       IE_EA
       000000C8H.5 SFRSYM    DATA     BIT       TMR2CN0_TF2LEN
       000000F8H.6 SFRSYM    DATA     BIT       SPI0CN0_WCOL
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 13
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 13
 
 
       000000F8H.2 SFRSYM    DATA     BIT       SPI0CN0_NSSMD0
@@ -844,7 +844,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       ---         BLOCKEND  ---      ---       LVL=0
 
       010003A2H   BLOCK     CODE     ---       LVL=0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 14
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 14
 
 
       010003A2H   LINE      CODE     ---       #137
@@ -909,7 +909,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       010003A1H   LINE      CODE     ---       #480
       ---         BLOCKEND  ---      ---       LVL=0
 
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 15
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 15
 
 
       010003C1H   BLOCK     CODE     ---       LVL=0
@@ -974,7 +974,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000DAH   SFRSYM    DATA     BYTE      PCA0CPM0
       000000E9H   SFRSYM    DATA     BYTE      PCA0CPL1
       000000F0H.4 SFRSYM    DATA     BIT       B_B4
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 16
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 16
 
 
       000000DBH   SFRSYM    DATA     BYTE      PCA0CPM1
@@ -1039,7 +1039,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000A8H.1 SFRSYM    DATA     BIT       IE_ET0
       000000AAH   SFRSYM    DATA     BYTE      CMP1MX
       000000A8H.3 SFRSYM    DATA     BIT       IE_ET1
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 17
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 17
 
 
       000000D4H   SFRSYM    DATA     BYTE      P0SKIP
@@ -1104,7 +1104,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000090H.4 SFRSYM    DATA     BIT       P1_B4
       00000080H.5 SFRSYM    DATA     BIT       P0_B5
       00000090H.5 SFRSYM    DATA     BIT       P1_B5
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 18
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 18
 
 
       00000080H.6 SFRSYM    DATA     BIT       P0_B6
@@ -1169,7 +1169,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000D0H.7 SFRSYM    DATA     BIT       PSW_CY
       000000A3H   SFRSYM    DATA     BYTE      SPI0DAT
       000000F8H.3 SFRSYM    DATA     BIT       SPI0CN0_NSSMD1
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 19
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 19
 
 
       000000BDH   SFRSYM    DATA     WORD      ADC0
@@ -1234,7 +1234,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000080H   SYMBOL    NUMBER   ---       IDATALEN
       01000190H   SYMBOL    CODE     NEAR LAB  IDATALOOP
       00000000H   SYMBOL    NUMBER   ---       PBPSTACK
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 20
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 20
 
 
       00000100H   SYMBOL    NUMBER   ---       PBPSTACKTOP
@@ -1299,7 +1299,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000093H   SFRSYM    DATA     BYTE      TMR3RLH
       000000F3H   SFRSYM    DATA     BYTE      EIP1
       00000098H.2 SFRSYM    DATA     BIT       SCON0_RB8
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 21
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 21
 
 
       000000CAH   SFRSYM    DATA     BYTE      TMR2RLL
@@ -1364,7 +1364,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       000000ACH   SFRSYM    DATA     BYTE      SMB0TC
       000000F2H   SFRSYM    DATA     BYTE      P1MDIN
       000000C0H.4 SFRSYM    DATA     BIT       SMB0CN0_STO
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 22
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 22
 
 
       000000FEH   SFRSYM    DATA     BYTE      P0MASK
@@ -1429,7 +1429,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000080H   SFRSYM    DATA     BIT       P0_B0
       000000B8H   SFRSYM    DATA     BIT       IP_PX0
       00000090H   SFRSYM    DATA     BIT       P1_B0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 23
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 23
 
 
       00000080H.1 SFRSYM    DATA     BIT       P0_B1
@@ -1494,7 +1494,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       00000091H   SFRSYM    DATA     BYTE      TMR3CN0
       000000D7H   SFRSYM    DATA     BYTE      SMB0ADR
       00000088H.4 SFRSYM    DATA     BIT       TCON_TR0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 24
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 24
 
 
       000000C8H.4 SFRSYM    DATA     BIT       TMR2CN0_TF2CEN
@@ -1559,7 +1559,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       010000C5H   LINE      CODE     ---       #129
       010000C7H   LINE      CODE     ---       #130
       010000C7H   LINE      CODE     ---       #131
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 25
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 25
 
 
       010000D2H   LINE      CODE     ---       #132
@@ -1624,7 +1624,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       01000316H   LINE      CODE     ---       #196
       0100031AH   LINE      CODE     ---       #197
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 26
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 26
 
 
 
@@ -1689,7 +1689,7 @@ SYMBOL TABLE OF MODULE:  BIG_BATTERY.OMF.CRBUILD (UART_0)
       ---         BLOCKEND  ---      ---       LVL=1
       01000366H   LINE      CODE     ---       #247
       01000366H   LINE      CODE     ---       #248
-LX51 LINKER/LOCATER V4.66.30.0                                                        02/05/2019  20:23:29  PAGE 27
+LX51 LINKER/LOCATER V4.66.30.0                                                        02/06/2019  17:42:49  PAGE 27
 
 
       01000366H   LINE      CODE     ---       #252

@@ -1,4 +1,5 @@
-import sys, time, serial, struct
+import sys, time, serial
+from struct import pack, unpack
 import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
 from test1 import Ui_Form
@@ -19,7 +20,7 @@ class MyFirstGuiProgram(Ui_Form):
 
     def connect(self):
         if not self.comm.connected:
-            if(self.comm.initComm(self.seriallineEdit.text())):
+            if(self.comm.open(self.seriallineEdit.text())):
                 self.connected = True
                 self.seriallineEdit.setEnabled(False)
                 self.connectButton.setText("DISCONNECT")
@@ -32,14 +33,12 @@ class MyFirstGuiProgram(Ui_Form):
                 self.pollButton.setEnabled(True)
                 self.currentButton.setEnabled(True)
                 self.currentButton.setEnabled(True)
-
-                self.comHistory.appendPlainText("Connected: " + dev)
+                self.comHistory.appendPlainText("Connected: " + self.comm.dev)
             else:
                 self.connectButton.setText("CONNECT")
-                self.comHistory.appendPlainText("Failed to open: " + dev)
+                self.comHistory.appendPlainText("Failed to open: " + self.comm.dev)
         else:
-            self.ser.close()
-            self.connected = False
+            self.comm.close()
             self.connectButton.setText("CONNECT")
             self.seriallineEdit.setEnabled(True)
             self.voltageButton.setEnabled(False)
@@ -55,7 +54,7 @@ class MyFirstGuiProgram(Ui_Form):
         
     def setVoltage(self):
         setV = self.voltagespinBox.value()
-        cmd, out = self.comm.setVoltage('1', setV))
+        cmd, out = self.comm.setVoltage('1', setV)
         self.updateCommandLine(cmd, out)
         
     def convertVoltage(self, val):
@@ -63,40 +62,48 @@ class MyFirstGuiProgram(Ui_Form):
 
     def setCurrent(self):
         setC = self.currentSpinBox.value()
-        cmd, out = self.comm.setCurrent('1', setC))
+        cmd, out = self.comm.setCurrent('1', setC)
         self.updateCommandLine(cmd, out)
 
     def convertCurrent(self, val):
             self.currentlineEdit.setText(str(val))
 
     def trickle(self, state):
-        cmd, out = self.comm.setTrickle('1', 1 if state else 0))
+        cmd, out = self.comm.setTrickle('1', 1 if state else 0)
         self.updateCommandLine(cmd, out)
 
     def output(self, state):
-        cmd, out = self.comm.setEnable('1', 1 if state else 0))
+        cmd, out = self.comm.setEnable('1', 1 if state else 0)
         self.updateCommandLine(cmd, out)
 
     def poll(self):
-        response = self.read_val("1", "RV")
-        self.vadclineEdit.setText(str(response))
-        self.vadclcdNumber.display(str(response))
-        response = self.read_val("1", "RI")
-        self.iadclineEdit.setText(str(response))
-        self.iadclcdNumber.display(str(response))
-        response = self.read_val("1", "RT")
-        self.tadclineEdit.setText(str(response))
-        self.tadclcdNumber.display(str(response))
+        cmd, out = self.comm.getVoltage('1')
+        self.updateCommandLine(cmd, out)
+        if out is not None:
+            self.vadclineEdit.setText(str(out[2]))
+            self.vadclcdNumber.display(hex(out[2]))
+        
+        cmd, out = self.comm.getCurrent('1')
+        self.updateCommandLine(cmd, out)
+        if out is not None:
+            self.iadclineEdit.setText(str(out[2]))
+            self.iadclcdNumber.display(hex(out[2]))
 
-    def updateCommandLine(cmd, out):
+        cmd, out = self.comm.getTemperature('1')
+        self.updateCommandLine(cmd, out)
+        if out is not None:
+            self.tadclineEdit.setText(str(out[2]))
+            self.tadclcdNumber.display(hex(out[2]))
+
+    def updateCommandLine(self, cmd, out):
         self.comHistory.appendPlainText(">> " + str(cmd))
         self.comHistory.appendPlainText("<< " + str(out))
 
 class BigBatteryComm():
-    def __init__(self, dialog):
+    def __init__(self):
         self.connected = False
 
-    def initComm(self, dev):
+    def open(self, dev):
         self.dev = dev
         try:
             self.ser = serial.Serial(dev, 4800, timeout = 1) # ttyACM1 for Arduino board
@@ -106,43 +113,55 @@ class BigBatteryComm():
             self.connected = False
             return False
 
+    def close(self):
+        self.connected = False
+        self.ser.close()
+
     def setVoltage(self, devNum, val):
-        return self.setVoltage(devNum, "TV", val)
+        return self.setVal(devNum, "TV", val)
 
     def setCurrent(self, devNum, val):
-        return self.setVoltage(devNum, "TI", val)
+        return self.setVal(devNum, "TI", val)
 
     def setTrickle(self, devNum, val):
-        return self.setVoltage(devNum, "TT", val)
+        return self.setVal(devNum, "TT", val)
     
     def setEnable(self, devNum, val):
-        return self.setVoltage(devNum, "TE", val)
+        return self.setVal(devNum, "TE", val)
 
     def setVal(self, devNum, command , val):
-        cmd = pact('c2sHc', devNum, command, val, 'X')
-        print(cmd)
+        sent =  bytes(devNum, 'utf-8'), bytes(command, 'utf-8'), int(val), bytes('X', 'utf-8')
+        cmd = pack('>c2sHc', bytes(devNum, 'utf-8'), bytes(command, 'utf-8'), int(val), bytes('X', 'utf-8'))
         try: 
             self.ser.write(cmd)
             out = self.ser.read(7)
-            out = unpact('ccH3s')
-            print(out)
+            out = unpack('>ccH3s', out)
             self.ser.flush() #flush the buffer
         except:
             out = None
-        return cmd, out
+        return sent, out
 
-    def readVal(self, devNum, command):
-        cmd = pact('c2sc', devNum, command, 'X')
-        print(cmd)
+    def getVoltage(self, devNum):
+        return self.getVal(devNum, "RV")
+
+    def getCurrent(self, devNum):
+        return self.getVal(devNum, "RI")
+
+    def getTemperature(self, devNum):
+        return self.getVal(devNum, "RT")
+
+    def getVal(self, devNum, command):
+        sent = (bytes(devNum, 'utf-8'), bytes(command, 'utf-8'), bytes('X', 'utf-8'))
+        cmd = pack('c2sc', bytes(devNum, 'utf-8'), bytes(command, 'utf-8'), bytes('X', 'utf-8'))
         try: 
             self.ser.write(cmd)
             out = self.ser.read(7)
-            out = unpact('ccH3s')
+            out = unpack('>ccH3s', out)
             print(out)
             self.ser.flush() #flush the buffer
         except:
             out = None
-        return cmd, out
+        return sent, out
 
     
 
@@ -152,8 +171,8 @@ class BigBatteryComm():
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     dialog = QtWidgets.QDialog()
-
-    prog = MyFirstGuiProgram(dialog)
+    comm = BigBatteryComm()
+    prog = MyFirstGuiProgram(dialog, comm)
     
     dialog.show()
     sys.exit(app.exec_())
