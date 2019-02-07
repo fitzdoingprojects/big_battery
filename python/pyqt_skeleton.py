@@ -14,6 +14,7 @@ class MyFirstGuiProgram(Ui_Form):
         self.voltageButton.clicked.connect(self.setVoltage)
         self.voltageSlider.valueChanged.connect(self.convertVoltage)
         self.currentButton.clicked.connect(self.setCurrent)
+        self.currentSlider.valueChanged.connect(self.convertCurrent)
         self.tricklecheckBox.stateChanged.connect(self.trickle)
         self.outputcheckBox.stateChanged.connect(self.output)
         self.pollButton.clicked.connect(self.poll)
@@ -54,8 +55,6 @@ class MyFirstGuiProgram(Ui_Form):
 
     def setVoltage(self):
         setV = self.voltagespinBox.value()
-        highByte = setV.to_bytes(2, byteorder='big')[0]
-        lowByte = setV.to_bytes(2, byteorder='big')[1]
         response = self.comm("1", "TV", setV.to_bytes(2, byteorder='big'))
         if(response == "NACK"):
             self.voltagelineEdit.setText("NACK")
@@ -68,59 +67,78 @@ class MyFirstGuiProgram(Ui_Form):
 
     def setCurrent(self):
         setC = self.currentSpinBox.value()
-        #if send current 
-        self.currentlineEdit.setText("OK: " + str(setC))
-        #if fail
-        self.currentlineEdit.setText("NACK")
+        response = self.comm("1", "TI", setC.to_bytes(2, byteorder='big'))
+        if(response == "NACK"):
+            self.currentlineEdit.setText("NACK")
+        else:
+            self.currentlineEdit.setText("OK: " + str(setC))
+
+    def convertCurrent(self, val):
+            self.currentlineEdit.setText(str(val))
+    convertCurrent
 
     def trickle(self, state):
         if state:
-            self.comHistory.appendPlainText("trickle enable")
+            self.comm("1", "TT", (1).to_bytes(2, byteorder='big'))
         else:
-            self.comHistory.appendPlainText("trickle disable")
+            self.comm("1", "TT", (0).to_bytes(2, byteorder='big'))
 
     def output(self, state):
         if state:
-            self.comHistory.appendPlainText("output enable")
+            self.comm("1", "TE", (1).to_bytes(2, byteorder='big'))
         else:
-            self.comHistory.appendPlainText("output disable")
+            self.comm("1", "TE", (0).to_bytes(2, byteorder='big'))
 
     def poll(self):
-        self.comHistory.appendPlainText("thread")
-        self.vadclineEdit.setText(str(100))
-        self.vadclcdNumber.display(str(200))
-        self.temp += 1
-        self.iadclineEdit.setText(str(self.temp))
-        self.iadclcdNumber.display(120)
+        response = self.read_val("1", "RV")
+        self.vadclineEdit.setText(str(response))
+        self.vadclcdNumber.display(str(response))
+        response = self.read_val("1", "RI")
+        self.iadclineEdit.setText(str(response))
+        self.iadclcdNumber.display(str(response))
+        response = self.read_val("1", "RT")
+        self.tadclineEdit.setText(str(response))
+        self.tadclcdNumber.display(str(response))
 
-        self.tadclineEdit.setText(str(140))
-        self.tadclcdNumber.display(140)
+class BigBatteryComm():
+    def __init__(self, dialog):
+        self.connected = False
 
     def initComm(self, dev):
         try:
-            self.ser = serial.Serial(dev, 9600, timeout = 1) # ttyACM1 for Arduino board
+            self.ser = serial.Serial(dev, 4800, timeout = 1) # ttyACM1 for Arduino board
             self.comHistory.appendPlainText("Connected: " + dev)
+            self.connected = True
             return True
         except:
             self.comHistory.appendPlainText("Failed to open: " + dev)
+            self.connected = False
             return False
 
-    def comm(self, devNum, command , data=None):
-        self.comHistory.appendPlainText(">> " + str(devNum) + command + str(data) + "X")
+    def set_val(self, devNum, command , data):
+        cmd = pact('c2sHc', devNum, command, data, 'X')
+        print(cmd)
+        try: 
+            self.ser.write(cmd)
+            out = str(self.ser.read(7))
+        except:
+            out = "NACK"
+        return cmd, out
 
+    def read_val(self, devNum, command):
+        cmd = pact('c2sc', devNum, command, 'X')
+        self.comHistory.appendPlainText(">> " + str(devNum) + command + "X")
         self.ser.write(bytes(devNum, 'utf-8'))
         self.ser.write(bytes(command, 'utf-8'))
-        if data:    
-            self.ser.write(data)
         self.ser.write(bytes("X", 'utf-8'))
-
-        time.sleep(2)
-        readOut = str(self.ser.read(100))
-        self.comHistory.appendPlainText("<< " + readOut)
+        readOut = self.ser.read(7)
+        print(readOut[2:4])
+        num = int.from_bytes(readOut[2:4], byteorder='big')
+        self.comHistory.appendPlainText("<< " + str(readOut))
         self.ser.flush() #flush the buffer
-        return readOut
+        return num
 
-
+    
 
 
 

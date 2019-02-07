@@ -11,6 +11,7 @@
     <property object="CLOCK_0" propertyId="clock.clockselect.clocksourcedivider" value="SYSCLK / 1"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.extclk" value="24500000"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.sysclk" value="24.500 MHz"/>
+    <property object="CMP_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="CROSSBAR0" propertyId="xbar0.pca0.cex" value="CEX0 and CEX1"/>
     <property object="CROSSBAR0" propertyId="xbar0.uart0.data" value="Enabled"/>
     <property object="DefaultMode" propertyId="mode.diagramLocation" value="100, 100"/>
@@ -57,9 +58,9 @@
     <property object="PCA_0" propertyId="pca.pcacountertimerruncontrol.pcarun" value="Start"/>
     <property object="PCA_0" propertyId="pca.pcapwmconfiguration.selectcyclelength" value="11 bits"/>
     <property object="TIMER01_0" propertyId="ABPeripheral.included" value="true"/>
-    <property object="TIMER01_0" propertyId="timer01.timer1highbyte.timer1highbyte" value="150"/>
-    <property object="TIMER01_0" propertyId="timer01.timer1mode2:8bitcountertimerwithautoreload.targetoverflowfrequency" value="19200"/>
-    <property object="TIMER01_0" propertyId="timer01.timer1mode2:8bitcountertimerwithautoreload.timerreloadvalue" value="150"/>
+    <property object="TIMER01_0" propertyId="timer01.timer1highbyte.timer1highbyte" value="43"/>
+    <property object="TIMER01_0" propertyId="timer01.timer1mode2:8bitcountertimerwithautoreload.targetoverflowfrequency" value="9600"/>
+    <property object="TIMER01_0" propertyId="timer01.timer1mode2:8bitcountertimerwithautoreload.timerreloadvalue" value="43"/>
     <property object="TIMER16_2" propertyId="ABPeripheral.included" value="true"/>
     <property object="TIMER16_3" propertyId="ABPeripheral.included" value="true"/>
     <property object="TIMER_SETUP_0" propertyId="ABPeripheral.included" value="true"/>

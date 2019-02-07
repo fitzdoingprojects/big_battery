@@ -1,4 +1,3 @@
-"./lib/efm8bb1/peripheralDrivers/src/adc_0.OBJ",
 "./lib/efm8bb1/peripheralDrivers/src/uart_0.OBJ",
 "./src/InitDevice.OBJ",
 "./src/Interrupts.OBJ",
