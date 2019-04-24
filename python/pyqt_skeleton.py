@@ -80,13 +80,13 @@ class MyFirstGuiProgram(Ui_Form):
         cmd, out = self.comm.getVoltage('1')
         self.updateCommandLine(cmd, out)
         if out is not None:
-            self.vadclineEdit.setText(str(out[2]))
+            self.vadclineEdit.setText(str(out[2] * 0.0013195800781249998))
             self.vadclcdNumber.display(hex(out[2]))
         
         cmd, out = self.comm.getCurrent('1')
         self.updateCommandLine(cmd, out)
         if out is not None:
-            self.iadclineEdit.setText(str(out[2]))
+            self.iadclineEdit.setText(str((out[2] * -0.05815991633124628) + 240.93023255813955))
             self.iadclcdNumber.display(hex(out[2]))
 
         cmd, out = self.comm.getTemperature('1')

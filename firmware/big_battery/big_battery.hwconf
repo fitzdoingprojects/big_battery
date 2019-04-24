@@ -3,10 +3,13 @@
   <mode name="DefaultMode">
     <property object="ADC_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="ADC_0" propertyId="adc.accumulatorconfiguration.enable12bitmode" value="Enabled"/>
-    <property object="ADC_0" propertyId="adc.accumulatorconfiguration.repeatcount" value="64 conversions"/>
+    <property object="ADC_0" propertyId="adc.accumulatorconfiguration.repeatcount" value="4 conversions"/>
     <property object="ADC_0" propertyId="adc.configuration.gaincontrol" value="1x gain"/>
     <property object="ADC_0" propertyId="adc.configuration.resolution" value="12-bit"/>
+    <property object="ADC_0" propertyId="adc.configuration.sarclockdivider" value="25"/>
+    <property object="ADC_0" propertyId="adc.control.enableadc" value="Enabled"/>
     <property object="ADC_0" propertyId="adc.control.enableburstmode" value="Enabled"/>
+    <property object="ADC_0" propertyId="adc.view.view" value="Advanced"/>
     <property object="CLOCK_0" propertyId="ABPeripheral.included" value="true"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.clocksourcedivider" value="SYSCLK / 1"/>
     <property object="CLOCK_0" propertyId="clock.clockselect.extclk" value="24500000"/>

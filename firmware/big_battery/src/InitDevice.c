@@ -431,12 +431,12 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 
 	// $[ADC0CF - ADC0 Configuration]
 	/***********************************************************************
-	 - SAR Clock Divider = 0x1F
+	 - SAR Clock Divider = 0x19
 	 - ADC0 operates in 10-bit or 12-bit mode 
 	 - The on-chip PGA gain is 1
 	 - Normal Track Mode
 	 ***********************************************************************/
-	ADC0CF = (0x1F << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
+	ADC0CF = (0x19 << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
 			| ADC0CF_ADGN__GAIN_1 | ADC0CF_ADTM__TRACK_NORMAL;
 	// [ADC0CF - ADC0 Configuration]$
 
@@ -446,10 +446,10 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 	 - Enable 12-bit mode
 	 - ADC0H:ADC0L contain the result of the latest conversion when Burst
 	 Mode is disabled
-	 - Perform and Accumulate 64 conversions 
+	 - Perform and Accumulate 4 conversions 
 	 ***********************************************************************/
 	ADC0AC = ADC0AC_ADSJST__RIGHT_NO_SHIFT | ADC0AC_AD12BE__12_BIT_ENABLED
-			| ADC0AC_ADAE__ACC_DISABLED | ADC0AC_ADRPT__ACC_64;
+			| ADC0AC_ADAE__ACC_DISABLED | ADC0AC_ADRPT__ACC_4;
 	// [ADC0AC - ADC0 Accumulator Configuration]$
 
 	// $[ADC0TK - ADC0 Burst Mode Track Time]
@@ -472,9 +472,10 @@ extern void ADC_0_enter_DefaultMode_from_RESET(void) {
 
 	// $[ADC0CN0 - ADC0 Control 0]
 	/***********************************************************************
+	 - Enable ADC0 
 	 - Enable ADC0 burst mode
 	 ***********************************************************************/
-	ADC0CN0 |= ADC0CN0_ADBMEN__BURST_ENABLED;
+	ADC0CN0 |= ADC0CN0_ADEN__ENABLED | ADC0CN0_ADBMEN__BURST_ENABLED;
 	// [ADC0CN0 - ADC0 Control 0]$
 
 }

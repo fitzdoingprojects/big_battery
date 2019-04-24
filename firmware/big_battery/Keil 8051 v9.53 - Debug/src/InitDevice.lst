@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 1   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE INITDEVICE
@@ -63,7 +63,7 @@ line level    source
   49          
   50          extern void PBCFG_0_enter_DefaultMode_from_RESET(void) {
   51   1              // $[XBR2 - Port I/O Crossbar 2]
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 2   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 2   
 
   52   1              /***********************************************************************
   53   1               - Weak Pullups disabled
@@ -128,7 +128,7 @@ line level    source
  112   1      
  113   1              // $[TH0 - Timer 0 High Byte]
  114   1              // [TH0 - Timer 0 High Byte]$
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 3   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 3   
 
  115   1      
  116   1              // $[TL0 - Timer 0 Low Byte]
@@ -193,7 +193,7 @@ line level    source
  175   1              // [EIE1 - Extended Interrupt Enable 1]$
  176   1      
  177   1              // $[EIP1 - Extended Interrupt Priority 1]
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 4   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 4   
 
  178   1              // [EIP1 - Extended Interrupt Priority 1]$
  179   1      
@@ -258,7 +258,7 @@ line level    source
  238   1              // $[P0SKIP - Port 0 Skip]
  239   1              /***********************************************************************
  240   1               - P0.0 pin is skipped by the crossbar
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 5   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 5   
 
  241   1               - P0.1 pin is skipped by the crossbar
  242   1               - P0.2 pin is skipped by the crossbar
@@ -323,7 +323,7 @@ line level    source
  301   1      
  302   1              // $[PCA On]
  303   1              PCA0CN0_CR = PCA0CN0_CR__RUN;
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 6   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 6   
 
  304   1              // [PCA On]$
  305   1      
@@ -388,7 +388,7 @@ line level    source
  364   1               ***********************************************************************/
  365   1              PCA0CPM1 = PCA0CPM1_CAPN__DISABLED | PCA0CPM1_ECCF__DISABLED
  366   1                              | PCA0CPM1_MAT__DISABLED | PCA0CPM1_PWM16__8_BIT
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 7   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 7   
 
  367   1                              | PCA0CPM1_CAPP__DISABLED | PCA0CPM1_ECOM__ENABLED
  368   1                              | PCA0CPM1_PWM__ENABLED | PCA0CPM1_TOG__DISABLED;
@@ -453,18 +453,18 @@ line level    source
  427   1              // [ADC0CN1 - ADC0 Control 1]$
  428   1      
  429   1              // $[ADC0MX - ADC0 Multiplexer Selection]
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 8   
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 8   
 
  430   1              // [ADC0MX - ADC0 Multiplexer Selection]$
  431   1      
  432   1              // $[ADC0CF - ADC0 Configuration]
  433   1              /***********************************************************************
- 434   1               - SAR Clock Divider = 0x1F
+ 434   1               - SAR Clock Divider = 0x19
  435   1               - ADC0 operates in 10-bit or 12-bit mode 
  436   1               - The on-chip PGA gain is 1
  437   1               - Normal Track Mode
  438   1               ***********************************************************************/
- 439   1              ADC0CF = (0x1F << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
+ 439   1              ADC0CF = (0x19 << ADC0CF_ADSC__SHIFT) | ADC0CF_AD8BE__NORMAL
  440   1                              | ADC0CF_ADGN__GAIN_1 | ADC0CF_ADTM__TRACK_NORMAL;
  441   1              // [ADC0CF - ADC0 Configuration]$
  442   1      
@@ -474,10 +474,10 @@ line level    source
  446   1               - Enable 12-bit mode
  447   1               - ADC0H:ADC0L contain the result of the latest conversion when Burst
  448   1               Mode is disabled
- 449   1               - Perform and Accumulate 64 conversions 
+ 449   1               - Perform and Accumulate 4 conversions 
  450   1               ***********************************************************************/
  451   1              ADC0AC = ADC0AC_ADSJST__RIGHT_NO_SHIFT | ADC0AC_AD12BE__12_BIT_ENABLED
- 452   1                              | ADC0AC_ADAE__ACC_DISABLED | ADC0AC_ADRPT__ACC_64;
+ 452   1                              | ADC0AC_ADAE__ACC_DISABLED | ADC0AC_ADRPT__ACC_4;
  453   1              // [ADC0AC - ADC0 Accumulator Configuration]$
  454   1      
  455   1              // $[ADC0TK - ADC0 Burst Mode Track Time]
@@ -500,29 +500,30 @@ line level    source
  472   1      
  473   1              // $[ADC0CN0 - ADC0 Control 0]
  474   1              /***********************************************************************
- 475   1               - Enable ADC0 burst mode
- 476   1               ***********************************************************************/
- 477   1              ADC0CN0 |= ADC0CN0_ADBMEN__BURST_ENABLED;
- 478   1              // [ADC0CN0 - ADC0 Control 0]$
- 479   1      
- 480   1      }
- 481          
- 482          extern void VREF_0_enter_DefaultMode_from_RESET(void) {
- 483   1              // $[REF0CN - Voltage Reference Control]
- 484   1              /***********************************************************************
- 485   1               - Enable the Temperature Sensor
- 486   1               - The ADC0 ground reference is the GND pin
- 487   1               - The internal reference operates at 2.4 V nominal
- 488   1               - The ADC0 voltage reference is the internal voltage reference
- 489   1               ***********************************************************************/
- 490   1              REF0CN = REF0CN_TEMPE__TEMP_ENABLED | REF0CN_GNDSL__GND_PIN
- 491   1                              | REF0CN_IREFLVL__2P4 | REF0CN_REFSL__INTERNAL_VREF;
- 492   1              // [REF0CN - Voltage Reference Control]$
-C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/06/2019 17:42:47 PAGE 9   
+ 475   1               - Enable ADC0 
+ 476   1               - Enable ADC0 burst mode
+ 477   1               ***********************************************************************/
+ 478   1              ADC0CN0 |= ADC0CN0_ADEN__ENABLED | ADC0CN0_ADBMEN__BURST_ENABLED;
+ 479   1              // [ADC0CN0 - ADC0 Control 0]$
+ 480   1      
+ 481   1      }
+ 482          
+ 483          extern void VREF_0_enter_DefaultMode_from_RESET(void) {
+ 484   1              // $[REF0CN - Voltage Reference Control]
+ 485   1              /***********************************************************************
+ 486   1               - Enable the Temperature Sensor
+ 487   1               - The ADC0 ground reference is the GND pin
+ 488   1               - The internal reference operates at 2.4 V nominal
+ 489   1               - The ADC0 voltage reference is the internal voltage reference
+ 490   1               ***********************************************************************/
+ 491   1              REF0CN = REF0CN_TEMPE__TEMP_ENABLED | REF0CN_GNDSL__GND_PIN
+ 492   1                              | REF0CN_IREFLVL__2P4 | REF0CN_REFSL__INTERNAL_VREF;
+C51 COMPILER V9.53.0.0   INITDEVICE                                                        02/07/2019 10:34:28 PAGE 9   
 
- 493   1      
- 494   1      }
- 495          
+ 493   1              // [REF0CN - Voltage Reference Control]$
+ 494   1      
+ 495   1      }
+ 496          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

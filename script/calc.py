@@ -57,24 +57,26 @@ ADC_scaling_factor = adc_scaling_factor()
 # Calculate current bias resistors
 
 R3 = 5e5  #required for CB input impedance
-CB_min = -2.0 #TODO: should this be dependent on I_max? right now set roughly to 150A for I_max
+R34 = R3 #makes math easier
+print("R34 = " + str(R34))
+CB_min = -4
 #resistor values for 
 def current_bias():
 
-    R4 = (V_op * R3) / (CB_min) + 2 * R3 
+    #R4 = (V_op * R3) / (CB_min) + 2 * R3 
+    R4 = (V_op / (- CB_min /2 )) * (R3 / 2)
     R4 = find_nearest(E24, R4)
     print("R4 = " + str(R4))
     return R4
 R4 = current_bias()
 
 # Calculate current gain resistors
-
 R5 = 1e4
-CB_max = 1.5
-
+CB_max = 1
 #resistor values for 
 def current_gain():
-    V_a_plus = (V_op - CB_max) * (R4 / (R4 + R3)) + CB_max
+    V_a_plus = V_op - (V_op - (CB_max / 2)) * (R4 / (R4 + (R3 / 2)))
+    print(V_a_plus)
     R6 = R5 * (V_adc_max / V_a_plus - 1)
     R6 = find_nearest(E24, R6)
     print("R6 = " + str(R6))
@@ -82,15 +84,31 @@ def current_gain():
 
 R6 = current_gain()
 
+def adc_current_scaling_factor():
+    AG = (1 + R6 / R5) 
+    print("AG: " + str(AG))
+    AD = (R4 / (R4 + (R3 / 2.0)))
+    print("AD: " + str(AD))
+    I_scale = - (100.0 / (AG * AD)) * (V_adc_max / ADC_resolution) 
+    #I_offset = (50.0 / (AD * AG)) * ((AG - AD*AG) * V_op + AD * AG) 
+    I_offset = (100) * (V_op) * (1 / AD + 1) + 50
+    return I_scale, I_offset
+
+I_scale, I_offset = adc_current_scaling_factor()
+print("I scale: " + str(I_scale))
+print("I offset: " + str(I_offset))
+
 ### Over Current
 print("\ncurrent")
+
 
 R13 = 1e4
 VCB_overcurrent = (-I_trickle_current) / 50.0 + CB_max
 
+
 #determine resistor for
 def over_current():
-    V_b_plus = (V_op - (VCB_overcurrent)) * (R4 / (R4 + R3)) + VCB_overcurrent
+    V_b_plus = (V_op - (VCB_overcurrent / 2)) * (R4 / (R4 + R3/ 2)) + VCB_overcurrent
     print("v_b+ = " + str(V_b_plus))
     V_b_out = (R6 / R5 + 1) * V_b_plus
     print("V_b_out = " + str(V_b_out))
@@ -98,8 +116,8 @@ def over_current():
     R12 = find_nearest(E24, R12)
     print("R12 = " + str(R12))
     return R12
-
-R12 = over_current()
+R12 = 1
+#R12 = over_current()
 
 VCB_trickle = (-I_over_current) / 50.0 + CB_max
 
@@ -114,7 +132,8 @@ def trickle_current():
     print("R11 = " + str(R11))
     return R11
 
-R11 = trickle_current()
+#R11 = trickle_current()
+R11 = 1
 
 
 

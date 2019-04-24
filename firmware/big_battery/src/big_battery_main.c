@@ -192,7 +192,7 @@ void uart_write16(uint16_t val) {
 	TX_Ready = 0;
 	TX_size = 2;
 	TX_BUFFER[1] = (uint8_t) (val & 0x00FF);
-	SBUF0 = (uint8_t) (val >> 8) & 0x00FF;
+	SBUF0 = (uint8_t) ((val >> 8) & 0x00FF);
 	while(!TX_Ready);
 }
 
@@ -272,7 +272,7 @@ bool ADC0_isConversionComplete(void)
 uint16_t ADC0_getResult(void)
 {
 	uint16_t result;
-	result = ADC0;
+	result = (0x0FFF & ADC0);
 	return result;
 }
 
